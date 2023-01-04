@@ -1,8 +1,14 @@
 import React from 'react'
+import { SideBar, Map } from '../../ComponentsIndex';
 
 const ModalContainer = () => {
   return (
-    <div>This the modal that contains everything</div>
+    <>
+
+<p className=''> hello!</p>
+<SideBar/>
+<Map/>
+    </>
   )
 }
 

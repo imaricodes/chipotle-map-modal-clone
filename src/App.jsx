@@ -1,4 +1,5 @@
-import ModalContainer from './components/User/ModalContainer/ModalContainer.jsx'
+import ModalContainer from './components/User/ModalContainer/ModalContainer'
+
 
 
 function App() {

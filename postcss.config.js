@@ -1,5 +1,5 @@
 export const plugins = {
-    'postcss-import': {},
-    tailwindcss: {config: './tailwindcss.config.cjs'},
+    
+    tailwindcss: {config: './tailwind.config.cjs'},
     autoprefixer: {},
 };
