@@ -5,7 +5,7 @@ const ModalContainer = () => {
   return (
     <>
 
-<p className=''> hello!</p>
+<p>hell!</p>
 <SideBar/>
 <Map/>
     </>
