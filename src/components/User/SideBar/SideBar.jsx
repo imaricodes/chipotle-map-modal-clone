@@ -5,7 +5,7 @@ const SideBar = () => {
     <div>
       <div>
         
-        <p className='text-xl'>sidebarz</p>
+        <p className='font-extrabold'>sidebarz</p>
         
         </div>
     </div>
