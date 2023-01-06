@@ -1,8 +1,15 @@
 import React from 'react'
+import SearchInput from '../SearchInput/SearchInput'
+
 
 const Search = () => {
   return (
-    <div>Search</div>
+    <div>
+      <SearchInput/>
+      <div>this is the magnifying icon</div>
+
+      
+      </div>
   )
 }
 

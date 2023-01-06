@@ -1,8 +1,13 @@
 import React from 'react'
+import Toggle from '../Toggle/Toggle.jsx'
+import Search from '../Search/Search.jsx'
 
 const SearchView = () => {
   return (
-    <div>SearchView</div>
+    <div>
+      <Toggle/>
+      <Search/>
+    </div>
   )
 }
 

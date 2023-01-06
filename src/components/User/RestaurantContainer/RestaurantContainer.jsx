@@ -1,8 +1,12 @@
 import React from 'react'
+import Restaurants from '../Restaurants/Restaurants'
 
 const RestaurantContainer = () => {
   return (
-    <div>RestaurantContainer</div>
+    <div>
+      <span>nearby text</span>
+    <Restaurants/>
+    </div>
   )
 }
 

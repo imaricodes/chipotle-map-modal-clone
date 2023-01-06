@@ -1,13 +1,14 @@
 import React from 'react'
+import SearchView from '../SearchView/SearchView'
+import PickupView from '../PickupView/PickupView'
 
 const SideBar = () => {
   return (
     <div>
-      <div>
-        
-        <p className='font-extrabold'>sidebarz</p>
-        
-        </div>
+      
+        <SearchView/>
+        <PickupView/>
+    
     </div>
   )
 }

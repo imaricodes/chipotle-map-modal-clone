@@ -3,12 +3,14 @@ import { SideBar, Map } from '../../ComponentsIndex';
 
 const ModalContainer = () => {
   return (
-    <>
+ 
 
-<p>hell!</p>
+<div className='flex flex-auto flex-wrap-reverse'>
+
 <SideBar/>
 <Map/>
-    </>
+</div>
+
   )
 }
 

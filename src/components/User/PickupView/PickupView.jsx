@@ -1,8 +1,14 @@
 import React from 'react'
+import InitialMessage from '../../InitialMessage/InitialMessage'
+import RestaurantContainer from '../RestaurantContainer/RestaurantContainer'
+
 
 const PickupView = () => {
   return (
-    <div>PickupView</div>
+    <div>
+      <InitialMessage/>
+      <RestaurantContainer/>
+    </div>
   )
 }
 
