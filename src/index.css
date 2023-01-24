@@ -1,6 +1,46 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .delivery-toggle-active {
+        box-shadow: 0 1px 10px 1px rgba(0, 0, 0, .2);
+        color: #fff;
+        background-color: #451400;
+    }
 
+    .whitemon svg use{
+     
+        fill: white;
+    }
+
+
+}
+
+@layer components {
+    .option {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 3%;
+        padding-right: 3%;
+        font-family: Trade Gothic LT, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        min-width: 128px;
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        border-radius: 2em;
+        color: #786259;
+        background-color: #fff;
+    }
+
+    .bottom-border {
+        border-bottom: 1px solid rgba(69,20,0,.2);
+    }
+}

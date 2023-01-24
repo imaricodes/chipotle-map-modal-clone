@@ -4,7 +4,7 @@ import PickupView from '../PickupView/PickupView'
 
 const SideBar = () => {
   return (
-    <div>
+    <div className='find-a-chipotle-search flex-2 flex-col w-[375px] h-full'>
       
         <SearchView/>
         <PickupView/>

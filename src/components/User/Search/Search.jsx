@@ -1,12 +1,13 @@
 import React from 'react'
 import SearchInput from '../SearchInput/SearchInput'
+import searchIcon from '../../../assets/search.svg'
 
 
 const Search = () => {
   return (
-    <div>
+    <div className='search-container flex justify-between border-b border-black'>
       <SearchInput/>
-      <div>this is the magnifying icon</div>
+      <img src={searchIcon} alt="search icon" style={{width:'21px', height:'21px'}} />
 
       
       </div>

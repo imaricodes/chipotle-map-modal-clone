@@ -3,8 +3,8 @@ import Restaurants from '../Restaurants/Restaurants'
 
 const RestaurantContainer = () => {
   return (
-    <div>
-      <span>nearby text</span>
+    <div className='restaurant-container'>
+      <span className='font-bold uppercase pl-8 pb-1 mb-1'>Nearby</span>
     <Restaurants/>
     </div>
   )
