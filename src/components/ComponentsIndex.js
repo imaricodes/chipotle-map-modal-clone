@@ -1,15 +1,16 @@
-import SideBar from './User/SideBar/SideBar';
+import SearchArea from './User/SearchArea/SearchArea';
 import Toggle from './User/Toggle/Toggle';
 import PickupView from './User/PickupView/PickupView';
 import RestaurantContainer from './User/RestaurantContainer/RestaurantContainer';
 import Restaurants from './User/Restaurants/Restaurants';
+import SearchContainer from './User/SearchContainer/SearchContainer';
 import SearchView from './User/SearchView/SearchView';
 import Search from './User/Search/Search';
 import MapWrapper from './User/Map/MapWrapper';
 import Map from './User/Map/Map';
 
 export {
-    SideBar,
+    SearchArea,
     Toggle,
     PickupView,
     RestaurantContainer,
@@ -17,5 +18,6 @@ export {
     SearchView,
     Search,
     MapWrapper,
-    Map
+    Map,
+    SearchContainer
 };

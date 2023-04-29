@@ -22,7 +22,7 @@ const Map = ()  =>{
 
   return (
    
-     <div className="map" ref={ref} id="map" style={{height: '100%', width: '100%'}}/> 
+     <div className="map w-full h-[320px] md:h-full"  ref={ref} id="map"/> 
   
   );
 }

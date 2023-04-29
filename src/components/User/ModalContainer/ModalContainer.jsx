@@ -1,14 +1,13 @@
 import React from 'react'
-import { SideBar, MapWrapper } from '../../ComponentsIndex';
+import { SearchContainer } from '../../ComponentsIndex';
 
 const ModalContainer = () => {
   return (
  
 
-<div className='flex flex-auto flex-wrap-reverse w-screen h-screen'>
+<div className='modal-container flex'>
 
-<SideBar/>
-<MapWrapper/>
+<SearchContainer />
 </div>
 
   )

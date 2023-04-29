@@ -2,9 +2,9 @@ import React from 'react'
 import SearchView from '../SearchView/SearchView'
 import PickupView from '../PickupView/PickupView'
 
-const SideBar = () => {
+const SearchArea = () => {
   return (
-    <div className='find-a-chipotle-search flex-2 flex-col w-[375px] h-full'>
+    <div className='search-area flex flex-1 flex-col w-full h-full'>
       
         <SearchView/>
         <PickupView/>
@@ -13,4 +13,4 @@ const SideBar = () => {
   )
 }
 
-export default SideBar
+export default SearchArea
