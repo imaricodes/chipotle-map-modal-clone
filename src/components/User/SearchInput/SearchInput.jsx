@@ -3,8 +3,7 @@ import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const SearchInput = () => {
-  const { nearbyResults, setNearbyResults } =
-    useContext(SearchAreaContext);
+  const { nearbyResults, setNearbyResults } = useContext(SearchAreaContext);
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   async function addAdressToStoreLocations(data) {
@@ -28,13 +27,10 @@ const SearchInput = () => {
           .catch((error) => console.log(error));
       })
     );
-    //why is this running before the fetch is complete?
     return result;
   }
 
   async function placeChanged(place) {
-
-    // console.log('place details: ', JSON.stringify(place))
     //search radius and location
     const locationLat = place.geometry.location.lat();
     const locationLong = place.geometry.location.lng();
@@ -47,18 +43,13 @@ const SearchInput = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        //set map center
-        
         return data.results;
       })
       .catch((error) => console.log(error));
 
     let mapLocations = await addAdressToStoreLocations(storeLocations);
- 
-      
-  
-    setNearbyResults(mapLocations);
 
+    setNearbyResults(mapLocations);
   }
   return (
     <div className="w-full">
