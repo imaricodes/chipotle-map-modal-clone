@@ -3,11 +3,11 @@ import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const SearchInput = () => {
-  const { nearbyResults, setNearbyResults, placeID, setPlaceID } =
+  const { nearbyResults, setNearbyResults } =
     useContext(SearchAreaContext);
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
-  async function getAddress(data) {
+  async function addAdressToStoreLocations(data) {
     console.log("data in get address ", data);
 
     let address;
@@ -23,7 +23,6 @@ const SearchInput = () => {
             address = data.result.formatted_address;
             //add address to map location object
             element.address = address;
-            console.log("new element ", element);
             return element;
           })
           .catch((error) => console.log(error));
@@ -34,9 +33,8 @@ const SearchInput = () => {
   }
 
   async function placeChanged(place) {
-    // if (nearbyResults.length > 0) { 
-    //   setNearbyResults([]);
-    // }
+
+    // console.log('place details: ', JSON.stringify(place))
     //search radius and location
     const locationLat = place.geometry.location.lat();
     const locationLong = place.geometry.location.lng();
@@ -44,18 +42,21 @@ const SearchInput = () => {
     const radius = 40000;
 
     //fetch nearby places based on user input location
-    let orange = await fetch(
+    let storeLocations = await fetch(
       `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&key=${MAP_KEY}`
     )
       .then((response) => response.json())
       .then((data) => {
+        //set map center
+        
         return data.results;
       })
       .catch((error) => console.log(error));
 
-    let mapLocations = await getAddress(orange);
-
-    console.log("map location with address added ", mapLocations);
+    let mapLocations = await addAdressToStoreLocations(storeLocations);
+ 
+      
+  
     setNearbyResults(mapLocations);
 
   }

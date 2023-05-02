@@ -4,7 +4,8 @@ export const SearchAreaContext = createContext();
 
 export const SearchContextProvider = (props) => {
   const [nearbyResults, setNearbyResults] = useState([]);
-  const [placeID, setPlaceID] = useState(null);
+
+
   
 
   return (
