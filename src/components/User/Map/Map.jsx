@@ -1,10 +1,14 @@
 import React from 'react'
-import {useRef, useEffect} from 'react'
+import { useContext, useRef, useEffect, } from 'react'
+
+
 import pepperMarker from  '../../../assets/icon-1.png'
+import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 
 const Map = ()  =>{
 
+  const { nearbyResults } = useContext(SearchAreaContext);
   const ref = useRef();
 
   const mapOptions = {
@@ -24,6 +28,7 @@ const beachMarker = new google.maps.Marker({
   icon: image,
 });
 
+//use create markers in the use effect below
 const  createMarkers = () => {
   const image = pepperMarker;
 
