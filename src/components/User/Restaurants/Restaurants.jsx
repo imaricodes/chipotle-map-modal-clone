@@ -1,22 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const Restaurants = () => {
   const { nearbyResults, setSelectedLocation } = useContext(SearchAreaContext);
-  const [streetAddressOnly, setStreetAddressOnly] = useState(null);
+
   const regexStreetAddressOnly = /^[^,]*/;
 
-  useEffect(() => {
-    if (nearbyResults.length > 0) {
-      let addressesOnly = nearbyResults.map((restaurant) => {
-        const match = restaurant.address.match(regexStreetAddressOnly);
-        return match[0];
-      });
-
-      setStreetAddressOnly(addressesOnly.map((item) => item));
-    } else return;
-  }, [nearbyResults]);
 
   const handleAddressLink = (e) => {
     //TODO: this prevent default may have to go if it prevents the click and zoom feature
