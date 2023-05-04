@@ -3,7 +3,7 @@ import React, { useContext} from "react";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const Restaurants = () => {
-  const { nearbyResults, setSelectedLocation } = useContext(SearchAreaContext);
+  const { nearbyResults, setSelectedLocation, selectedLocationAddress, setSelectedLocationAddress } = useContext(SearchAreaContext);
 
   const regexStreetAddressOnly = /^[^,]*/;
 
@@ -23,6 +23,7 @@ const Restaurants = () => {
       };
 
       setSelectedLocation(currentLocation);
+      setSelectedLocationAddress(nearbyResults[e.target.id].address);
     }
   };
 

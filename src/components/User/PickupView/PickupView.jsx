@@ -10,7 +10,6 @@ const PickupView = () => {
   
 
   useEffect(() => {
-    console.log(initialMessageRef.current)
     nearbyResults.length > 0 ? initialMessageRef.current.classList.add('hidden') : initialMessageRef.current.classList.remove('hidden')
   }, [nearbyResults]);
 

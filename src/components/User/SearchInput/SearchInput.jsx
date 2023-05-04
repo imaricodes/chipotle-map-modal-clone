@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
-const SearchInput = () => {
-  const { nearbyResults, setNearbyResults } = useContext(SearchAreaContext);
+const SearchInput = (props) => {
+  const {
+    nearbyResults,
+    setNearbyResults,
+    selectedLocation,
+    selectedLocationAddress,
+    searchInputFocusActive,
+    setSearchInputFocusActive,
+    searchInputReceived,
+    setSearchInputReceived,
+  } = useContext(SearchAreaContext);
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
-  async function addAdressToStoreLocations(data) {
-    console.log("data in get address ", data);
+  const inputRef = useRef(null);
 
+  async function addAdressToStoreLocations(data) {
     let address;
 
     //add address property to each object in data array
@@ -47,12 +56,47 @@ const SearchInput = () => {
       })
       .catch((error) => console.log(error));
 
+    //use place deatils api to get address for each location and add to location object
     let mapLocations = await addAdressToStoreLocations(storeLocations);
 
     setNearbyResults(mapLocations);
   }
+
+  const focusInputCursor = (e) => {
+    e.preventDefault();
+    inputRef.current.focus();
+    setSearchInputFocusActive(true);
+  };
+
+  const handleUserInput = (e) => {
+    e.target.value.length > 0
+      ? setSearchInputReceived(true)
+      : setSearchInputReceived(false);
+  };
+
+  useEffect(() => {
+    if (searchInputFocusActive === true) {
+      inputRef.current.focus();
+    }
+
+    if (searchInputFocusActive === false) {
+      inputRef.current.value = "";
+    }
+  }, [searchInputFocusActive]);
+
+  useEffect(() => {
+    if (selectedLocation) {
+      console.log("selected location", JSON.stringify(selectedLocationAddress));
+      const regex = /\s[0-9]+,\s*USA$/g;
+      const result = selectedLocationAddress.replace(regex, '');
+      console.log(result)
+
+      inputRef.current.value = result;
+    }
+  }, [selectedLocationAddress]);
+
   return (
-    <div className="w-full">
+    <div className="w-full" onClick={focusInputCursor}>
       <Autocomplete
         apiKey={MAP_KEY}
         style={{ width: "100%" }}
@@ -62,6 +106,9 @@ const SearchInput = () => {
           fields: ["address_components", "geometry", "icon", "name"],
           componentRestrictions: { country: "us" },
         }}
+        placeholder=""
+        onInput={handleUserInput}
+        ref={inputRef}
       />
     </div>
   );

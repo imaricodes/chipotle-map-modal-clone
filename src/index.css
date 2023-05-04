@@ -17,6 +17,25 @@
 
 }
 
+/* search input */
+@Layer components {
+    .search-input  {
+        @apply bg-purple-100
+    }
+
+    .input-placehoder-text {
+        @apply text-[#451400]
+    }
+    .input-placehoder-text--input-focus-active-true {
+        @apply top-0 text-xs 
+    }
+    .input-placehoder-text--input-focus-active-false {
+        @apply top-4 text-base
+    }
+
+    
+}
+
 @layer components {
     .option {
         padding-top: 1px;

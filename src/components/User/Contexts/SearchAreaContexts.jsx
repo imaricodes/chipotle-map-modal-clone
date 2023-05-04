@@ -5,6 +5,9 @@ export const SearchAreaContext = createContext();
 export const SearchContextProvider = (props) => {
   const [nearbyResults, setNearbyResults] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocationAddress, setSelectedLocationAddress] = useState(null);
+  const [searchInputFocusActive, setSearchInputFocusActive] = useState(false);
+  const [searchInputReceived, setSearchInputReceived] = useState(false);
 
 
   
@@ -16,6 +19,12 @@ export const SearchContextProvider = (props) => {
         setNearbyResults: setNearbyResults,
         selectedLocation: selectedLocation,
         setSelectedLocation: setSelectedLocation,
+        searchInputFocusActive: searchInputFocusActive,
+        setSearchInputFocusActive: setSearchInputFocusActive,
+        searchInputReceived: searchInputReceived,
+        setSearchInputReceived: setSearchInputReceived,
+        selectedLocationAddress: selectedLocationAddress,
+        setSelectedLocationAddress: setSelectedLocationAddress,
       }}
     >
       {props.children}
