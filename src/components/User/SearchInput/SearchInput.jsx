@@ -4,15 +4,13 @@ import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const SearchInput = (props) => {
   const {
-    nearbyResults,
     setNearbyResults,
-    selectedLocation,
-    selectedLocationAddress,
     searchInputFocusActive,
     setSearchInputFocusActive,
-    searchInputReceived,
     setSearchInputReceived,
+    selectedStore
   } = useContext(SearchAreaContext);
+
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
@@ -28,9 +26,16 @@ const SearchInput = (props) => {
         )
           .then((response) => response.json())
           .then((data) => {
+
+            const regexStreetAddressOnly = /^[^,]*/;
+            const regexShortAddress = /\s[0-9]+,\s*USA$/g;
             address = data.result.formatted_address;
-            //add address to map location object
-            element.address = address;
+
+            //add addresses to map location object
+            element.address_long = address;
+            element.address_short= address.replace(regexShortAddress, '');
+            // element.address_short = address.match(regexShortAddress)[0];
+            element.address_street = address.match(regexStreetAddressOnly)[0]
             return element;
           })
           .catch((error) => console.log(error));
@@ -85,15 +90,10 @@ const SearchInput = (props) => {
   }, [searchInputFocusActive]);
 
   useEffect(() => {
-    if (selectedLocation) {
-      console.log("selected location", JSON.stringify(selectedLocationAddress));
-      const regex = /\s[0-9]+,\s*USA$/g;
-      const result = selectedLocationAddress.replace(regex, '');
-      console.log(result)
-
-      inputRef.current.value = result;
+    if (selectedStore) {
+      inputRef.current.value = selectedStore.address_short;
     }
-  }, [selectedLocationAddress]);
+  }, [selectedStore]);
 
   return (
     <div className="w-full" onClick={focusInputCursor}>

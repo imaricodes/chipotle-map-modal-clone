@@ -8,7 +8,6 @@ const Search = () => {
   const {
     nearbyResults,
     setNearbyResults,
-    setSelectedLocation,
     searchInputFocusActive,
     setSearchInputFocusActive,
     searchInputReceived,
@@ -33,7 +32,6 @@ const Search = () => {
   const handleCloseIcon = () => {
     console.log("close icon clicked");
     setNearbyResults([]);
-    setSelectedLocation(null);
     setSearchInputReceived(false);
     setSearchInputFocusActive(false);
   };
@@ -67,17 +65,17 @@ const Search = () => {
 
   return (
     <div className="search-container ">
-      <div className="input-placeholder-text-container flex h-4 relative bg-blue-200 ">
+      <div className="input-placeholder-text-container flex h-4 relative">
         <div
           ref={inputPlaceHolderRef}
-          className="input-placehoder-text input-placehoder-text--input-focus-active-false absolute transition-all ease-in-out duration-[2000] "
+          className="input-placehoder-text input-placehoder-text--input-focus-active-false absolute transition-all ease-in-out duration-[2000]"
           onClick={setSearchInputState}
         >
           <p>City, State, or Zip Code</p>
         </div>
       </div>
-      <span className="">
-        <div className="flex justify-between border-b border-black w-full ">
+      <span>
+        <div className="flex justify-between border-b border-black w-full">
           <SearchInput searchInputActive={searchInputActive} />
           <img
             ref={searchIconRef}

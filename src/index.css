@@ -20,7 +20,7 @@
 /* search input */
 @Layer components {
     .search-input  {
-        @apply bg-purple-100
+        /* @apply bg-purple-100 */
     }
 
     .input-placehoder-text {

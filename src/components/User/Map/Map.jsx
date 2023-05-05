@@ -5,18 +5,11 @@ import pepperMarker from "../../../assets/icon-1.png";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const Map = () => {
-  const { nearbyResults, selectedLocation } = useContext(SearchAreaContext);
+  const { nearbyResults, selectedStore } = useContext(SearchAreaContext);
   const ref = useRef();
 
   //add marker to map
   const image = pepperMarker;
-
-  //use create markers in the use effect below
-  const createMarkers = () => {
-    let markers = [];
-    nearbyResults.array.forEach((element) => {});
-    const image = pepperMarker;
-  };
 
   useEffect(() => {
     let mapOptions = {};
@@ -33,7 +26,7 @@ const Map = () => {
       map = new google.maps.Map(ref.current, mapOptions);
     }
 
-    if (nearbyResults.length > 0 && selectedLocation === null) {
+    if (nearbyResults.length > 0 && selectedStore === null) {
       mapOptions = {
         ...mapOptions,
         center: {
@@ -59,14 +52,15 @@ const Map = () => {
       });
     }
 
-    if (nearbyResults.length > 0 && selectedLocation !== null) {
+    if (nearbyResults.length > 0 && selectedStore !== null) {
+
       mapOptions = {
         ...mapOptions,
         center: {
-          lat: selectedLocation.center.lat,
-          lng: selectedLocation.center.lng,
+          lat: selectedStore.geometry.location.lat,
+          lng: selectedStore.geometry.location.lng,
         },
-        zoom: selectedLocation.zoom,
+        zoom: 13,
       };
       //reset map with new center
       map = new google.maps.Map(ref.current, mapOptions);
@@ -82,7 +76,7 @@ const Map = () => {
         marker.setMap(map);
       });
     }
-  }, [nearbyResults, selectedLocation]);
+  }, [nearbyResults, selectedStore]);
 
   return <div className="map w-full h-[320px] md:h-full" ref={ref} id="map" />;
 };

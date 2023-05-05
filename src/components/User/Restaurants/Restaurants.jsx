@@ -1,12 +1,10 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const Restaurants = () => {
-  const { nearbyResults, setSelectedLocation, selectedLocationAddress, setSelectedLocationAddress } = useContext(SearchAreaContext);
-
-  const regexStreetAddressOnly = /^[^,]*/;
-
+  const { nearbyResults, setShowPickupDetail, setSelectedStore } =
+    useContext(SearchAreaContext);
 
   const handleAddressLink = (e) => {
     //TODO: this prevent default may have to go if it prevents the click and zoom feature
@@ -22,8 +20,9 @@ const Restaurants = () => {
         zoom: 16,
       };
 
-      setSelectedLocation(currentLocation);
-      setSelectedLocationAddress(nearbyResults[e.target.id].address);
+      setSelectedStore(nearbyResults[e.target.id]);
+
+      setShowPickupDetail(true);
     }
   };
 
@@ -38,7 +37,7 @@ const Restaurants = () => {
             className="restaurant-name cursor-pointer underline"
             onClick={handleAddressLink}
           >
-            {item.address.match(regexStreetAddressOnly)[0]}
+            {item.address_street}
           </a>
         ))}
     </div>
