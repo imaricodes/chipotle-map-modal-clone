@@ -8,34 +8,77 @@ const SearchInput = (props) => {
     searchInputFocusActive,
     setSearchInputFocusActive,
     setSearchInputReceived,
-    selectedStore
+    selectedStore,
   } = useContext(SearchAreaContext);
 
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
 
+  let testAddress = "2640 Creekside Dr, Twinsburg, OH 44087, USA";
+  const parseAddress = (address) => {
+    let obj = {};
+    let parsedElement="";
+    let trimmedElement="";
+    let arr = address.split(",");
+
+    arr.forEach((element, index) => {
+      parsedElement = element.replace(/,\s*$/, "");
+      trimmedElement = parsedElement.trim();
+
+
+      switch (index) {
+        case 0:
+          obj.street = trimmedElement;
+          break;
+        case 1:
+          obj.city = trimmedElement;
+          break;
+        case 2:
+          obj.state_zip = trimmedElement;
+          break;
+        default:
+          break;
+      }
+    });
+
+    return obj;
+  };
+
+  // parseAddress(testAddress);
+
   async function addAdressToStoreLocations(data) {
     let address;
+    const fields = {
+      formatted_address: "formatted_address",
+      city: "city",
+      state: "state",
+      zip: "zip",
+      name: "name",
+      opening_hours: "opening_hours",
+    };
 
     //add address property to each object in data array
     let result = await Promise.all(
       data.map(async (element) => {
         return fetch(
-          `https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.place_id}&fields=formatted_address&key=${MAP_KEY}`
+          `https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.place_id}&fields=${fields.name},${fields.formatted_address},${fields.opening_hours}&key=${MAP_KEY}`
         )
           .then((response) => response.json())
           .then((data) => {
-
             const regexStreetAddressOnly = /^[^,]*/;
+            const regexCityStateZip = /,\s*(.*)/g;
             const regexShortAddress = /\s[0-9]+,\s*USA$/g;
             address = data.result.formatted_address;
 
             //add addresses to map location object
             element.address_long = address;
-            element.address_short= address.replace(regexShortAddress, '');
-            // element.address_short = address.match(regexShortAddress)[0];
-            element.address_street = address.match(regexStreetAddressOnly)[0]
+            element.address_short = address.replace(regexShortAddress, "");
+            element.address_street = address.match(regexStreetAddressOnly)[0];
+
+            //parse the formatted address to get city, state, and zip
+            let parsedAddress = parseAddress(address);
+            element.address_parsed = parsedAddress;
             return element;
           })
           .catch((error) => console.log(error));
