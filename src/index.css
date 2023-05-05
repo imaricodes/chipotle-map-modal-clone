@@ -2,64 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "TradeGothic";
+  src: url("../src/assets/Trade-Gothic-LT-Std-Bold");
+}
+
+@layer base {
+  body {
+    @apply font-body;
+  }
+}
+
+/* Toggle */
 @layer utilities {
-    .delivery-toggle-active {
-        box-shadow: 0 1px 10px 1px rgba(0, 0, 0, .2);
-        color: #fff;
-        background-color: #451400;
-    }
+  .delivery-toggle-active {
+    @apply box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    background-color: #451400;
+  }
 
-    .whitemon svg use{
-     
-        fill: white;
-    }
-
-
+  /* .whitemon svg use {
+    fill: white;
+  } */
 }
 
-/* search input */
-@Layer components {
-    .search-input  {
-        /* @apply bg-purple-100 */
-    }
-
-    .input-placehoder-text {
-        @apply text-[#451400]
-    }
-    .input-placehoder-text--input-focus-active-true {
-        @apply top-0 text-xs 
-    }
-    .input-placehoder-text--input-focus-active-false {
-        @apply top-4 text-base
-    }
-
-    
-}
-
+/* Search Input */
 @layer components {
-    .option {
-        padding-top: 1px;
-        padding-bottom: 1px;
-        padding-left: 3%;
-        padding-right: 3%;
-        font-family: Trade Gothic LT, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        min-width: 128px;
-        flex: 1 1 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        border-radius: 2em;
-        color: #786259;
-        background-color: #fff;
-    }
+  .search-input {
+    /* @apply bg-purple-100 */
+  }
 
-    .bottom-border {
-        border-bottom: 1px solid rgba(69,20,0,.2);
-    }
+  .input-placehoder-text {
+    @apply text-[#451400];
+  }
+  .input-placehoder-text--input-focus-active-true {
+    @apply top-0 text-xs;
+  }
+  .input-placehoder-text--input-focus-active-false {
+    @apply top-4 text-base;
+  }
+}
+
+/* Restaurant Container */
+@layer components {
+  .restaurant-container  {
+    @apply text-sm text-[#786259];
+  }
+
+}
+
+/* Initial Message */
+@layer components {
+  .initial-message p {
+    @apply text-[#8c766d] text-sm  font-light
+  }
 }
