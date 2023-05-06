@@ -14,11 +14,22 @@
 }
 
 /* Toggle */
-@layer utilities {
+@layer components {
   .delivery-toggle-active {
     @apply box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.2);
     color: #fff;
     background-color: #451400;
+  }
+
+  .toggle-find-chipotle {
+    @apply rounded-[2em] flex items-center justify-center uppercase text-sm font-bold  w-1/2 gap-2
+  }
+
+  .toggle-find-chipotle-pickup.active{
+    @apply bg-[#451400] text-white  ;
+  }
+  .toggle-find-chipotle-delivery.active{
+    @apply bg-[#451400] text-white  ;
   }
 
 }

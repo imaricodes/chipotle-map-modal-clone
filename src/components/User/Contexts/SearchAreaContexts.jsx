@@ -10,6 +10,7 @@ export const SearchContextProvider = (props) => {
   const [showPickupDetail, setShowPickupDetail] = useState(false);
   const [selectedStore, setSelectedStore] = useState(null);
   const [pickupInfoModalActive, setPickupInfoModalActive] = useState(false);
+  const [deliveryModeActive, setDeliveryModeActive] = useState(false);
 
   return (
     <SearchAreaContext.Provider
@@ -26,6 +27,8 @@ export const SearchContextProvider = (props) => {
         setSelectedStore: setSelectedStore,
         pickupInfoModalActive: pickupInfoModalActive,
         setPickupInfoModalActive: setPickupInfoModalActive,
+        deliveryModeActive: deliveryModeActive,
+        setDeliveryModeActive: setDeliveryModeActive,
       }}
     >
       {props.children}
