@@ -49,6 +49,7 @@ const SearchInput = (props) => {
 
   async function addAdressToStoreLocations(data) {
     let address;
+    
     const fields = {
       formatted_address: "formatted_address",
       city: "city",
@@ -61,20 +62,28 @@ const SearchInput = (props) => {
     //add address property to each object in data array
     let result = await Promise.all(
       data.map(async (element) => {
+        console.log('element vicinity', element.vicinity)
         return fetch(
           `https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.place_id}&fields=${fields.name},${fields.formatted_address},${fields.opening_hours}&key=${MAP_KEY}`
         )
           .then((response) => response.json())
           .then((data) => {
+       
             const regexStreetAddressOnly = /^[^,]*/;
             const regexCityStateZip = /,\s*(.*)/g;
             const regexShortAddress = /\s[0-9]+,\s*USA$/g;
+            const regexDailyHours = /^([^\s]+)\s/;
+
+
             address = data.result.formatted_address;
 
             //add addresses to map location object
             element.address_long = address;
             element.address_short = address.replace(regexShortAddress, "");
             element.address_street = address.match(regexStreetAddressOnly)[0];
+            element.daily_hours = data.result.opening_hours.weekday_text[0].replace(regexDailyHours, "");
+            
+
 
             //parse the formatted address to get city, state, and zip
             let parsedAddress = parseAddress(address);
@@ -100,6 +109,7 @@ const SearchInput = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
+       
         return data.results;
       })
       .catch((error) => console.log(error));

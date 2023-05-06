@@ -1,44 +1,105 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+// import closeIcon from "../../../assets/close-icon.svg";
+import infoIcon from "../../../assets/info-orange-brown.svg";
+import closeIcon from "../../../assets/close-icon-restaurant-details.svg";
+import { set } from "y";
 
 const RestaurantDetails = () => {
-  const { showPickupDetail, setShowPickupDetail, selectedStore } =
+  const { showPickupDetail, setShowPickupDetail, selectedStore, setPickupInfoModalActive } =
     useContext(SearchAreaContext);
+
+  const mapURLParameters = {
+    lat: selectedStore.geometry.location.lat,
+    lng: selectedStore.geometry.location.lng,
+    place_id: selectedStore.place_id,
+    zoom: 16,
+  };
+
+  const mapURLQuery = `https://www.google.com/maps/search/?api=1&query=${mapURLParameters.lat},${mapURLParameters.lng}&query_place_id=${mapURLParameters.place_id}&zoom=${mapURLParameters.zoom}`;
 
   const handleClose = () => {
     setShowPickupDetail((prev) => !prev);
   };
 
-  console.log('selected store in restaurant details: ', JSON.stringify(selectedStore))
+
+
+  const openModal = () => {
+    setPickupInfoModalActive(prev => !prev);
+  }
+
+
+
   return (
-    <div className="restaurant-details-view  bg-white h-full w-full absolute top-0 left-0 z-10">
+    <div className="restaurant-details-view  bg-white h-full w-full absolute pt-8 top-0 left-0 z-10">
+        
+    
+
       <div className="restaurant-details px-5 pb-5 min-width-[325px] w-full">
-        <div className="header flex bg-pink-100">
-          <a href="#">{selectedStore.address_street} </a>
-          {selectedStore.city}, {selectedStore.state}
-           city and state under link, close  <button className="bg-blue-100" onClick={handleClose}>
-          CLOSE
-        </button>
+        <div className="header flex justify-between mb-3 relative">
+          <div className="flex flex-col text-[#54392d]">
+            <a
+              className="font-bold underline"
+              href={mapURLQuery}
+              target="_blank"
+            >
+              {selectedStore.address_parsed.street}
+            </a>
+            <p className="text-base text-[#54392d]">
+              {selectedStore.address_parsed.city},{" "}
+              {selectedStore.address_parsed.state_zip}
+            </p>
+          </div>
+
+          <button
+            className="cursor-pointer absolute top-0 right-2"
+            onClick={handleClose}
+          >
+            <img
+              src={closeIcon}
+              alt="close icon"
+              style={{ width: "21px", height: "21px" }}
+            />
+          </button>
         </div>
-        <div className="pill bg-blue-100">
-          'pill', currently closed/open
+        {!selectedStore.open_now && (
+          <div className="mb-5 bg-[#AC2318] font-tradeGothicBold rounded-xl text-center inline-block px-2 py-1 text-white uppercase text-xs ">
+            <p>currently closed</p>
+          </div>
+        )}
+
+        {/* TODO: Figure out how to calculate nearby cross streets */}
+
+        <div
+          className="btn-pickup py-3 flex bg-[#451400]  justify-center items-center font-tradeGothicBold mb-3 font-bold text-white uppercase text-lg border cursor-pointer border-[#451400]"
+          style={
+            !selectedStore.open_now && {
+              backgroundColor: "#D4CBC7",
+              border: "none",
+            }
+          }
+        >
+          pickup here
         </div>
-        <div className="vicinity bg-yellow-100">
-          vicinity (nearby cross streets)
+
+        <div className="btn-pickup py-3 flex cursor-pointer bg-white  justify-center items-center font-tradeGothicBold mb-7 font-bold text-[#451400] uppercase text-lg border border-[#451400]">
+          order catering
         </div>
-        <div className="btn-pickup bg-orange-100">
-          Button = pickup
+
+        <div className="pickup-info flex items-center gap-2 mb-5 cursor-pointer">
+          <img
+            src={infoIcon}
+            alt="info icon"
+            onClick={openModal}
+            style={{ width: "16px", height: "19px" }}
+          />
+          <p className="text-sm font-bold text-[#59382b]">Pickup</p>
         </div>
-        <div className="btn-catering bg-green-50">
-          Button =catering
+        <div className="hours ">
+          <p className="text-[#756456] font-extralight">
+            Mon-Sun: {selectedStore.daily_hours}
+          </p>
         </div>
-        <div className="pickup-info bg-purple-50">
-          pickup info (modal, use new dialog tag)
-        </div>
-        <div className="hours bg-blue-50">
-          mon-sun 9am to 10pm
-        </div>
-       
       </div>
     </div>
   );

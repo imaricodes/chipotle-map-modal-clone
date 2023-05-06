@@ -31,14 +31,17 @@ const Restaurants = () => {
     <div className="restaurant-container flex flex-col">
       {nearbyResults &&
         nearbyResults.map((item, index) => (
-          <a
-            key={index}
-            id={index}
-            className="restaurant-name cursor-pointer underline"
-            onClick={handleAddressLink}
-          >
-            {item.address_street}
-          </a>
+          <div className="  restaurant-list-bg--animate " key={index}>
+            <div className="py-4 ml-5 mr-5 border-b ">
+              <a
+                id={index}
+                className="restaurant-name cursor-pointer underline font-bold text-[#451400] text-base"
+                onClick={handleAddressLink}
+              >
+                {item.address_street}
+              </a>
+            </div>
+          </div>
         ))}
     </div>
   );

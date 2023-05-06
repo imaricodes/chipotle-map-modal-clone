@@ -21,9 +21,6 @@
     background-color: #451400;
   }
 
-  /* .whitemon svg use {
-    fill: white;
-  } */
 }
 
 /* Search Input */
@@ -51,9 +48,42 @@
 
 }
 
+/* Restaurant List */
+
+@layer components {
+
+  .restaurant-list-bg--animate:hover {
+   
+    background-position: bottom left;
+    /* color: #fff; */
+  }
+  .restaurant-list-bg--animate {
+   
+     
+    background: linear-gradient(90deg,#f0f0f0 50%,#fff 0);
+    background-position: 100% 100%;
+    background-size: 200% 100%;
+    transition: all .2s;
+ 
+  }
+  
+}
+
 /* Initial Message */
 @layer components {
   .initial-message p {
     @apply text-[#8c766d] text-sm  font-light
   }
 }
+/* Pickup Button */
+@layer components {
+  .btn-pickup {
+
+  } 
+
+  .bton-pickup--active {
+
+  }
+}
+
+
