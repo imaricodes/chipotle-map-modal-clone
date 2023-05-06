@@ -6,8 +6,12 @@ import closeIcon from "../../../assets/close-icon-restaurant-details.svg";
 import { set } from "y";
 
 const RestaurantDetails = () => {
+
+  
   const { showPickupDetail, setShowPickupDetail, selectedStore, setPickupInfoModalActive } =
     useContext(SearchAreaContext);
+
+    console.log('selected store is open?', selectedStore.is_open_now);
 
   const mapURLParameters = {
     lat: selectedStore.geometry.location.lat,
@@ -62,7 +66,7 @@ const RestaurantDetails = () => {
             />
           </button>
         </div>
-        {!selectedStore.open_now && (
+        {!selectedStore.is_open_now && (
           <div className="mb-5 bg-[#AC2318] font-tradeGothicBold rounded-xl text-center inline-block px-2 py-1 text-white uppercase text-xs ">
             <p>currently closed</p>
           </div>
@@ -71,12 +75,15 @@ const RestaurantDetails = () => {
         {/* TODO: Figure out how to calculate nearby cross streets */}
 
         <div
-          className="btn-pickup py-3 flex bg-[#451400]  justify-center items-center font-tradeGothicBold mb-3 font-bold text-white uppercase text-lg border cursor-pointer border-[#451400]"
+          className="btn-pickup py-3 flex  justify-center items-center font-tradeGothicBold mb-3 font-bold text-white uppercase text-lg border cursor-pointer border-[#451400]"
           style={
-            !selectedStore.open_now && {
+            !selectedStore.is_open_now ? {
               backgroundColor: "#D4CBC7",
               border: "none",
-            }
+            } : {
+              backgroundColor: "#451400",
+              border: "none",
+            } 
           }
         >
           pickup here

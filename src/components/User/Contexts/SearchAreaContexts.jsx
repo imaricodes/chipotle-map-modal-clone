@@ -29,6 +29,8 @@ export const SearchContextProvider = (props) => {
         setPickupInfoModalActive: setPickupInfoModalActive,
         deliveryModeActive: deliveryModeActive,
         setDeliveryModeActive: setDeliveryModeActive,
+        deliveryLocation: deliveryLocation,
+        setDeliveryLocation: setDeliveryLocation,
       }}
     >
       {props.children}

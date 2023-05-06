@@ -44,7 +44,7 @@ const Toggle = () => {
       </div>
 
       <div ref={deliveryToggleRef} className="toggle-find-chipotle toggle-find-chipotle-delivery" onClick={handleDeliveryToggle}>
-        {!deliveryModeActive ? <img src={CarBrown} alt="car icon" /> : <img src={CarWhite} alt="car icon" />}
+        {!deliveryModeActive ? <img src={Icon.CarBrown} alt="car icon" /> : <img src={Icon.CarWhite} alt="car icon" />}
         <span>delivery</span>
       </div>
     </div>

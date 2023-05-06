@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useEffect, useState } from "react";
-import SearchInput from "../SearchInput/SearchInput";
+import PickupSearchInput from "../SearchInput/PickupSearchInput";
 import searchIcon from "../../../assets/search.svg";
 import closeIcon from "../../../assets/close-icon.svg";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
@@ -76,7 +76,7 @@ const Search = () => {
       </div>
       <span>
         <div className="flex justify-between border-b border-black w-full">
-          <SearchInput searchInputActive={searchInputActive} />
+          <PickupSearchInput searchInputActive={searchInputActive} />
           <img
             ref={searchIconRef}
             className="cursor-pointer"

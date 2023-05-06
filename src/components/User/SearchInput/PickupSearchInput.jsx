@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
-const SearchInput = (props) => {
+const PickupSearchInput = (props) => {
   const {
     setNearbyResults,
     searchInputFocusActive,
@@ -15,17 +15,16 @@ const SearchInput = (props) => {
 
   const inputRef = useRef(null);
 
-  let testAddress = "2640 Creekside Dr, Twinsburg, OH 44087, USA";
+
   const parseAddress = (address) => {
     let obj = {};
-    let parsedElement="";
-    let trimmedElement="";
+    let parsedElement = "";
+    let trimmedElement = "";
     let arr = address.split(",");
 
     arr.forEach((element, index) => {
       parsedElement = element.replace(/,\s*$/, "");
       trimmedElement = parsedElement.trim();
-
 
       switch (index) {
         case 0:
@@ -49,7 +48,7 @@ const SearchInput = (props) => {
 
   async function addAdressToStoreLocations(data) {
     let address;
-    
+
     const fields = {
       formatted_address: "formatted_address",
       city: "city",
@@ -62,18 +61,18 @@ const SearchInput = (props) => {
     //add address property to each object in data array
     let result = await Promise.all(
       data.map(async (element) => {
-        console.log('element vicinity', element.vicinity)
+        console.log("element vicinity", element.vicinity);
         return fetch(
           `https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.place_id}&fields=${fields.name},${fields.formatted_address},${fields.opening_hours}&key=${MAP_KEY}`
         )
           .then((response) => response.json())
           .then((data) => {
-       
             const regexStreetAddressOnly = /^[^,]*/;
             const regexCityStateZip = /,\s*(.*)/g;
             const regexShortAddress = /\s[0-9]+,\s*USA$/g;
             const regexDailyHours = /^([^\s]+)\s/;
 
+            console.log(data.result.opening_hours.open_now);
 
             address = data.result.formatted_address;
 
@@ -81,9 +80,12 @@ const SearchInput = (props) => {
             element.address_long = address;
             element.address_short = address.replace(regexShortAddress, "");
             element.address_street = address.match(regexStreetAddressOnly)[0];
-            element.daily_hours = data.result.opening_hours.weekday_text[0].replace(regexDailyHours, "");
-            
-
+            element.daily_hours =
+              data.result.opening_hours.weekday_text[0].replace(
+                regexDailyHours,
+                ""
+              );
+              element.is_open_now = data.result.opening_hours.open_now;
 
             //parse the formatted address to get city, state, and zip
             let parsedAddress = parseAddress(address);
@@ -109,7 +111,6 @@ const SearchInput = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-       
         return data.results;
       })
       .catch((error) => console.log(error));
@@ -167,4 +168,4 @@ const SearchInput = (props) => {
   );
 };
 
-export default SearchInput;
+export default PickupSearchInput;
