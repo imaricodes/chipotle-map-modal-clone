@@ -9,6 +9,8 @@ const DeliverySearchInput = (props) => {
     setSearchInputFocusActive,
     setSearchInputReceived,
     selectedStore,
+    deliveryLocation,
+    setDeliveryLocation,
   } = useContext(SearchAreaContext);
 
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
@@ -100,25 +102,59 @@ const DeliverySearchInput = (props) => {
 
   async function placeChanged(place) {
     //search radius and location
+    //TODO: Does this need to change?
     const locationLat = place.geometry.location.lat();
     const locationLong = place.geometry.location.lng();
     const location = `${locationLat}%2C${locationLong}`;
     const radius = 40000;
 
+    // console.log('address place data', JSON.stringify(place));
+    // console.log('street number: ', place.address_components[0].long_name);
+    // console.log('street name: ', place.address_components[1].long_name);
+    // console.log('city: ', place.address_components[2].long_name);
+    // console.log('state: ', place.address_components[4].short_name);
+    // console.log('country: ', place.address_components[5].short_name);
+
+    //check for undefined address components
+    
+
+
+    let obj = {
+      street_address: `${place.address_components[0].long_name} ${place.address_components[1].long_name}`,
+      // city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
+      place_id: place.place_id,
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+    }
+
+    console.log('obj', JSON.stringify(obj));
+
+    //set deliveryLocation
+    setDeliveryLocation(obj);
+
+
+
+
     //fetch nearby places based on user input location
-    let storeLocations = await fetch(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&key=${MAP_KEY}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        return data.results;
-      })
-      .catch((error) => console.log(error));
+    //CHANGE: check if street address is in the radius of selected chipotle?
+    // let deliveryAddress = await fetch(
+    //   // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&key=${MAP_KEY}`
+    //   `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?location=${location}&key=${MAP_KEY}`
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("address data", data.results);
+    //     return data.results;
+    //   })
+    //   .catch((error) => console.log(error));
 
-    //use place deatils api to get address for each location and add to location object
-    let mapLocations = await addAdressToStoreLocations(storeLocations);
+    // //use place deatils api to get address for each location and add to location object
+    // // let mapLocations = await addAdressToStoreLocations(storeLocations);
 
-    setNearbyResults(mapLocations);
+    // //set deliveryLocation
+    // setDeliveryLocation(deliveryAddress);
+
+    // setNearbyResults(mapLocations);
   }
 
   const focusInputCursor = (e) => {
@@ -156,13 +192,15 @@ const DeliverySearchInput = (props) => {
         style={{ width: "100%" }}
         onPlaceSelected={placeChanged}
         options={{
-          types: ["(regions)"],
-          fields: ["address_components", "geometry", "icon", "name"],
+          types: ["address"],
+          fields: ["address_components", "geometry.location","formatted_address", "place_id"],
           componentRestrictions: { country: "us" },
         }}
         placeholder=""
         onInput={handleUserInput}
         ref={inputRef}
+        // onError={(status, clearSuggestions) => clearSuggestions()}
+        onError={(status, error, clearSuggestions) => console.log('WAYS',error)}
       />
     </div>
   );

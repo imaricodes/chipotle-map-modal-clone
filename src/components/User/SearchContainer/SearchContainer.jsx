@@ -27,7 +27,7 @@ const SearchContainer = () => {
         <div >This is a modal</div>
         <button onClick={closeModal}>Close</button>
       </dialog>
-      <MapWrapper />
+      {/* <MapWrapper /> */}
       <SearchArea />
     </div>
   );

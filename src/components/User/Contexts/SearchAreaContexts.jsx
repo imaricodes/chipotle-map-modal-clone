@@ -11,6 +11,7 @@ export const SearchContextProvider = (props) => {
   const [selectedStore, setSelectedStore] = useState(null);
   const [pickupInfoModalActive, setPickupInfoModalActive] = useState(false);
   const [deliveryModeActive, setDeliveryModeActive] = useState(false);
+  const [deliveryLocation, setDeliveryLocation] = useState(null);
 
   return (
     <SearchAreaContext.Provider
