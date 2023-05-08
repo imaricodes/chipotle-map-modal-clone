@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import addressDummyData from "../dummyData/dummy_deliveryAddress.json";
+
 
 const DeliverySearchInput = (props) => {
   const {
@@ -16,7 +18,6 @@ const DeliverySearchInput = (props) => {
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
-
 
   const parseAddress = (address) => {
     let obj = {};
@@ -87,7 +88,7 @@ const DeliverySearchInput = (props) => {
                 regexDailyHours,
                 ""
               );
-              element.is_open_now = data.result.opening_hours.open_now;
+            element.is_open_now = data.result.opening_hours.open_now;
 
             //parse the formatted address to get city, state, and zip
             let parsedAddress = parseAddress(address);
@@ -100,6 +101,13 @@ const DeliverySearchInput = (props) => {
     return result;
   }
 
+  // *** DEVELOPMENT PLACE CHANGED FUNCTION *** //
+  async function placeChangedDevelopment(addressDumyData) {
+    console.log("running dummy addrress  function");
+    setDeliveryLocation(addressDummyData);
+  }
+
+  // *** PRODUCTION PLACE CHANGED FUNCTION *** //
   async function placeChanged(place) {
     //search radius and location
     //TODO: Does this need to change?
@@ -108,20 +116,12 @@ const DeliverySearchInput = (props) => {
     const location = `${locationLat}%2C${locationLong}`;
     const radius = 40000;
 
-    // console.log('address place data', JSON.stringify(place));
-    // console.log('street number: ', place.address_components[0].long_name);
-    // console.log('street name: ', place.address_components[1].long_name);
-    // console.log('city: ', place.address_components[2].long_name);
-    // console.log('state: ', place.address_components[4].short_name);
-    // console.log('country: ', place.address_components[5].short_name);
 
     //check for undefined address components
-    
-
 
     let obj = {
       street_address: `${place.address_components[0].long_name} ${place.address_components[1].long_name}`,
-      // city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
+      city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
       place_id: place.place_id,
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
@@ -132,29 +132,6 @@ const DeliverySearchInput = (props) => {
     //set deliveryLocation
     setDeliveryLocation(obj);
 
-
-
-
-    //fetch nearby places based on user input location
-    //CHANGE: check if street address is in the radius of selected chipotle?
-    // let deliveryAddress = await fetch(
-    //   // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&key=${MAP_KEY}`
-    //   `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?location=${location}&key=${MAP_KEY}`
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("address data", data.results);
-    //     return data.results;
-    //   })
-    //   .catch((error) => console.log(error));
-
-    // //use place deatils api to get address for each location and add to location object
-    // // let mapLocations = await addAdressToStoreLocations(storeLocations);
-
-    // //set deliveryLocation
-    // setDeliveryLocation(deliveryAddress);
-
-    // setNearbyResults(mapLocations);
   }
 
   const focusInputCursor = (e) => {
@@ -186,23 +163,40 @@ const DeliverySearchInput = (props) => {
   }, [selectedStore]);
 
   return (
-    <div className="w-full" onClick={focusInputCursor}>
-      <Autocomplete
-        apiKey={MAP_KEY}
-        style={{ width: "100%" }}
-        onPlaceSelected={placeChanged}
-        options={{
-          types: ["address"],
-          fields: ["address_components", "geometry.location","formatted_address", "place_id"],
-          componentRestrictions: { country: "us" },
-        }}
-        placeholder=""
-        onInput={handleUserInput}
-        ref={inputRef}
-        // onError={(status, clearSuggestions) => clearSuggestions()}
-        onError={(status, error, clearSuggestions) => console.log('WAYS',error)}
-      />
-    </div>
+    <>
+      <div className="w-full" onClick={focusInputCursor}>
+        <Autocomplete
+          apiKey={MAP_KEY}
+          style={{ width: "100%" }}
+          // onPlaceSelected={placeChanged}
+          onPlaceSelected={null}
+          options={{
+            types: ["address"],
+            fields: [
+              "address_components",
+              "geometry.location",
+              "formatted_address",
+              "place_id",
+            ],
+            componentRestrictions: { country: "us" },
+          }}
+          placeholder=""
+          // onInput={handleUserInput}
+          onInput={null}
+          ref={inputRef}
+          // onError={(status, clearSuggestions) => clearSuggestions()}
+          onError={(status, error, clearSuggestions) =>
+            console.log("WAYS", error)
+          }
+        />
+      </div>
+      <button
+        className="w-40 h-20 bg-red-100"
+        onClick={placeChangedDevelopment}
+      >
+        Run Dummy Data
+      </button>
+    </>
   );
 };
 

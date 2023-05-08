@@ -3,9 +3,8 @@ import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 //Data for development only
-import placeDummyData from "../dummyData/dummy_place_data";
 import nearbySearchDummyData from "../dummyData/dummy_nearby_search_data.json";
-import placeDetailDataDummyData from "../dummyData/dummy_place_detail_data.json";
+
 
 const PickupSearchInput = () => {
   const {
@@ -19,13 +18,6 @@ const PickupSearchInput = () => {
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
-
-  // *** DEVELOPMENT DATA  *** //
-  // console.log("dummy nearby search locations",nearbySearchDummyData);
-  // console.log("dummy place locations",placeDummyData);
-  // console.log("dummy place details",placeDetailDataDummyData);
-
-
 
 
   // *** FUNCTIONS *** //

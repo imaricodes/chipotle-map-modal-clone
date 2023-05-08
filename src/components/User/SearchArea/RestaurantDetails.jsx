@@ -32,7 +32,7 @@ const RestaurantDetails = () => {
     setPickupInfoModalActive(prev => !prev);
   }
 
-
+const storeOpen = false;
 
   return (
     <div className="restaurant-details-view  bg-white h-full w-full absolute pt-8 top-0 left-0 z-10">
@@ -75,7 +75,7 @@ const RestaurantDetails = () => {
         {/* TODO: Figure out how to calculate nearby cross streets */}
 
         <div
-          className="btn-pickup py-3 flex  justify-center items-center font-tradeGothicBold mb-3 font-bold text-white uppercase text-lg border cursor-pointer border-[#451400]"
+          className="btn-pickup button text-white border border-[#451400]"
           style={
             !selectedStore.is_open_now ? {
               backgroundColor: "#D4CBC7",
@@ -84,12 +84,13 @@ const RestaurantDetails = () => {
               backgroundColor: "#451400",
               border: "none",
             } 
+  
           }
         >
           pickup here
         </div>
 
-        <div className="btn-pickup py-3 flex cursor-pointer bg-white  justify-center items-center font-tradeGothicBold mb-7 font-bold text-[#451400] uppercase text-lg border border-[#451400]">
+        <div className="btn-pickup  button-catering   bg-white  mb-7  text-[#451400]  text-lg border border-[#451400]">
           order catering
         </div>
 

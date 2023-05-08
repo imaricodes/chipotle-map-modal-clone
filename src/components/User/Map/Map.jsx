@@ -1,22 +1,50 @@
 import React from "react";
 import { useContext, useRef, useEffect } from "react";
 
-import pepperMarker from "../../../assets/icon-1.png";
+import storeLocationMarker from "../../../assets/icon-store-location-marker.png";
+import deliveryMarker from "../../../assets/icon-delivery-location-marker.png";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const Map = () => {
-  const { nearbyResults, selectedStore } = useContext(SearchAreaContext);
+  const { nearbyResults, selectedStore, deliveryModeActive, deliveryLocation } =
+    useContext(SearchAreaContext);
   const ref = useRef();
 
   //add marker to map
-  const image = pepperMarker;
+  const image = storeLocationMarker;
 
   useEffect(() => {
     let mapOptions = {};
 
     let map;
 
+    if (deliveryModeActive && deliveryLocation !== null) {
+      console.log("from MAP delivery mode active delivery location not null");
+      mapOptions = {
+        ...mapOptions,
+        center: {
+          lat: deliveryLocation.lat,
+          lng: deliveryLocation.lng,
+        },
+        zoom: 13,
+      };
+
+      map = new google.maps.Map(ref.current, mapOptions);
+      let marker = new google.maps.Marker({
+        position: {
+          lat: deliveryLocation.lat,
+          lng: deliveryLocation.lng,
+        },
+        ref,
+        icon: deliveryMarker,
+      });
+      marker.setMap(map);
+      return;
+    }
+
+    // Pickup View, no search yet
     if (nearbyResults.length === 0) {
+      console.log("from MAP no nearby results");
       mapOptions = {
         zoom: 3,
         center: { lat: 41.850033, lng: -87.6500523 },
@@ -53,7 +81,6 @@ const Map = () => {
     }
 
     if (nearbyResults.length > 0 && selectedStore !== null) {
-
       mapOptions = {
         ...mapOptions,
         center: {
@@ -71,12 +98,12 @@ const Map = () => {
             lng: item.geometry.location.lng,
           },
           ref,
-          icon: image,
+          icon: storeLocationMarker,
         });
         marker.setMap(map);
       });
     }
-  }, [nearbyResults, selectedStore]);
+  }, [nearbyResults, selectedStore, deliveryLocation, deliveryModeActive]);
 
   return <div className="map w-full h-[320px] md:h-full" ref={ref} id="map" />;
 };

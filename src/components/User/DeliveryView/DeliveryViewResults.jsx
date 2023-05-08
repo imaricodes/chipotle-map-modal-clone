@@ -9,7 +9,6 @@ const DeliveryViewResults = () => {
   } = useContext(SearchAreaContext);
 
   useEffect(() => {
-    console.log('DELIVERY LOCATION:',deliveryLocation);
   }, [deliveryLocation]);
 
   return (

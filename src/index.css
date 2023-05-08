@@ -64,13 +64,11 @@
 @layer components {
 
   .restaurant-list-bg--animate:hover {
-   
     background-position: bottom left;
     /* color: #fff; */
   }
   .restaurant-list-bg--animate {
-   
-     
+
     background: linear-gradient(90deg,#f0f0f0 50%,#fff 0);
     background-position: 100% 100%;
     background-size: 200% 100%;
@@ -86,14 +84,14 @@
     @apply text-[#8c766d] text-sm  font-light
   }
 }
-/* Pickup Button */
+/* Button */
 @layer components {
-  .btn-pickup {
-
+  .button {
+    @apply py-3 flex  justify-center items-center font-tradeGothicBold mb-3 font-bold uppercase text-lg cursor-pointer
   } 
 
-  .bton-pickup--active {
-
+  .button-catering {
+    @apply button
   }
 }
 

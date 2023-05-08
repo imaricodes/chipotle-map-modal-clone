@@ -6,7 +6,6 @@ import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 const DeliveryView = () => {
   const { nearbyResults, deliveryLocation } = useContext(SearchAreaContext);
   const DeliveryViewMessageRef = useRef(null);
-  console.log('current delivery location?', deliveryLocation);
 
   useEffect(() => {}, [deliveryLocation]);
 
