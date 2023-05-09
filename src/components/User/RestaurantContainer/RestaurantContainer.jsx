@@ -4,7 +4,7 @@ import locationTarget from "../../../assets/location-target.svg";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const RestaurantContainer = () => {
-  const { nearbyResults } = useContext(SearchAreaContext);
+  const { nearbyResults, showPickupDetail } = useContext(SearchAreaContext);
   const targetSectionRef = useRef(null);
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const RestaurantContainer = () => {
           </p>
         </div>
       </span>
-
-      <Restaurants />
+   
+      {!showPickupDetail &&  <Restaurants /> }
     </div>
   );
 };

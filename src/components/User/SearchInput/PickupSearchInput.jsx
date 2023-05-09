@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
+
 //Data for development only
 import nearbySearchDummyData from "../dummyData/dummy_nearby_search_data.json";
 
@@ -14,6 +15,8 @@ const PickupSearchInput = () => {
     setSearchInputReceived,
     selectedStore,
   } = useContext(SearchAreaContext);
+
+
 
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
@@ -106,6 +109,7 @@ const PickupSearchInput = () => {
     // *** DEVELOPMENT PLACE CHANGED FUNCTION *** //
   async function placeChangedDevelopment() {
     console.log("running dummy place change function");
+ 
     setNearbyResults(nearbySearchDummyData);
   }
 

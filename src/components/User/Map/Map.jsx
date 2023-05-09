@@ -27,6 +27,7 @@ const Map = () => {
           lng: deliveryLocation.lng,
         },
         zoom: 13,
+        disableDefaultUI: true
       };
 
       map = new google.maps.Map(ref.current, mapOptions);
@@ -48,6 +49,8 @@ const Map = () => {
       mapOptions = {
         zoom: 3,
         center: { lat: 41.850033, lng: -87.6500523 },
+        disableDefaultUI: true,
+        zoomControl: true,
       };
 
       //reset map with new center
@@ -62,6 +65,7 @@ const Map = () => {
           lng: nearbyResults[0].geometry.location.lng,
         },
         zoom: 10,
+        disableDefaultUI: true
       };
 
       //reset map with new center
@@ -88,6 +92,7 @@ const Map = () => {
           lng: selectedStore.geometry.location.lng,
         },
         zoom: 13,
+        disableDefaultUI: true
       };
       //reset map with new center
       map = new google.maps.Map(ref.current, mapOptions);

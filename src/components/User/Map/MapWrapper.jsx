@@ -13,7 +13,7 @@ const MapWrapper = () => {
       <div className='map-wrapper flex  w-full 
       '>
         {/* //TEMP: for production add MAP_KEY to wrapper API key */}
-       <Wrapper apiKey='AIzaSyAcpjfyjXc1pj0e2RaG9c5NE8_yEJ9z5KI'>
+       <Wrapper apiKey='AIzaSyCWzgD8qrlxljtiaIlJDF0P8AzrmvKlErc'>
         <Map />
         </Wrapper>
      

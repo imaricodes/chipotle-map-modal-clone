@@ -1,12 +1,13 @@
-import ModalContainer from './components/User/ModalContainer/ModalContainer'
+import { SearchContextProvider } from "./components/User/Contexts/SearchAreaContexts";
 
-
+import ModalContainer from "./components/User/ModalContainer/ModalContainer";
 
 function App() {
-
   return (
-   <ModalContainer/>
-  )
+    <SearchContextProvider>
+      <ModalContainer />
+    </SearchContextProvider>
+  );
 }
 
-export default App
+export default App;

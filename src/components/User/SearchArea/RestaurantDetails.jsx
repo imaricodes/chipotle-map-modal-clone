@@ -1,17 +1,20 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 // import closeIcon from "../../../assets/close-icon.svg";
 import infoIcon from "../../../assets/info-orange-brown.svg";
 import closeIcon from "../../../assets/close-icon-restaurant-details.svg";
-import { set } from "y";
+import pickupIcon from "../../../assets/pickup.svg";
 
 const RestaurantDetails = () => {
+  const {
+    showPickupDetail,
+    setShowPickupDetail,
+    selectedStore,
+    setPickupInfoModalActive,
+    pickupInfoModalActive,
+  } = useContext(SearchAreaContext);
 
-  
-  const { showPickupDetail, setShowPickupDetail, selectedStore, setPickupInfoModalActive } =
-    useContext(SearchAreaContext);
-
-    console.log('selected store is open?', selectedStore.is_open_now);
+  console.log("selected store is open?", selectedStore.is_open_now);
 
   const mapURLParameters = {
     lat: selectedStore.geometry.location.lat,
@@ -26,19 +29,26 @@ const RestaurantDetails = () => {
     setShowPickupDetail((prev) => !prev);
   };
 
-
-
   const openModal = () => {
-    setPickupInfoModalActive(prev => !prev);
-  }
+    setPickupInfoModalActive((prev) => !prev);
+  };
 
-const storeOpen = false;
+  const dialogRef = useRef(null);
+
+  const closeModal = () => {
+    dialogRef.current.close();
+    setPickupInfoModalActive(false);
+  };
+
+  useEffect(() => {
+    pickupInfoModalActive && dialogRef.current.showModal();
+  }, [pickupInfoModalActive]);
+
+  const storeOpen = false;
 
   return (
     <div className="restaurant-details-view  bg-white h-full w-full absolute pt-8 top-0 left-0 z-10">
-        
-    
-
+     
       <div className="restaurant-details px-5 pb-5 min-width-[325px] w-full">
         <div className="header flex justify-between mb-3 relative">
           <div className="flex flex-col text-[#54392d]">
@@ -77,14 +87,15 @@ const storeOpen = false;
         <div
           className="btn-pickup button text-white border border-[#451400]"
           style={
-            !selectedStore.is_open_now ? {
-              backgroundColor: "#D4CBC7",
-              border: "none",
-            } : {
-              backgroundColor: "#451400",
-              border: "none",
-            } 
-  
+            !selectedStore.is_open_now
+              ? {
+                  backgroundColor: "#D4CBC7",
+                  border: "none",
+                }
+              : {
+                  backgroundColor: "#451400",
+                  border: "none",
+                }
           }
         >
           pickup here
@@ -109,6 +120,31 @@ const storeOpen = false;
           </p>
         </div>
       </div>
+      <dialog className="h-[100%] pt-16  w-full absolute top-0" ref={dialogRef}>
+        <img
+          className="h-[21px] w-[21px] absolute top-2 right-2"
+          src={closeIcon}
+          onClick={closeModal}
+        />
+        <div className="modal-contents relative flex flex-col items-center max-w-[440px]  h-full ml-auto mr-auto">
+          <p className="font-tradeGothicBold uppercase text-2xl font-bold text-[#59382B] mb-10">
+            Pickup Options
+          </p>
+          <div className="flex justify-center gap-4">
+            <img src={pickupIcon} className="h-[78px] w=[68px]" />
+            <div className="flex flex-col text-[#786259] text-base">
+              <p className="font-bold">Pickup</p>
+              <p>
+                Grab your order on the pickup shelf. If you need help, ask a
+                crew member.
+              </p>
+            </div>
+          </div>
+          <button className="button absolute bottom-0 bg-[#451400] border-[#451400] text-white w-full">
+            OKAY
+          </button>
+        </div>
+      </dialog>
     </div>
   );
 };

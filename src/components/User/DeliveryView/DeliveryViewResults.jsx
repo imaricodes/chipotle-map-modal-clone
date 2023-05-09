@@ -5,14 +5,20 @@ import carGold from "../../../assets/car-gold.svg";
 
 const DeliveryViewResults = () => {
   const {
-    deliveryLocation,
+    setDeliveryLocation,deliveryLocation, setNearbyResults, setDeliveryModeActive
   } = useContext(SearchAreaContext);
+
+  const handlePickupInstead = () => {
+    setNearbyResults([]);
+    setDeliveryModeActive(false);
+    setDeliveryLocation(null);
+  }
 
   useEffect(() => {
   }, [deliveryLocation]);
 
   return (
-    <div className=" flex justify-center px-5 flex-col items-center mt-9 mb-3">
+    <div className=" flex justify-center px-5 flex-col items-center mt-9 mb-56">
       <img
         src={carGold}
         alt="gold car icon"
@@ -36,7 +42,7 @@ const DeliveryViewResults = () => {
       <div className="button text-white border-[#451400] bg-[#451400] w-full ">
         Add Adress Details
       </div>
-      <p className="uppercase font-bold underline text-[#B68207] cursor-pointer">Pickup Instead</p>
+      <p className="uppercase font-bold underline text-[#B68207] cursor-pointer" onClick={handlePickupInstead}>Pickup Instead</p>
     </div>
   );
 };

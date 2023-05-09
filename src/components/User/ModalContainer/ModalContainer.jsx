@@ -1,18 +1,19 @@
-import React from 'react'
-import { SearchContainer } from '../../ComponentsIndex';
-import { SearchContextProvider } from "../Contexts/SearchAreaContexts";
+import React, { useEffect, useContext, useRef } from "react";
+import { SearchContainer } from "../../ComponentsIndex";
+
+
 
 const ModalContainer = () => {
+
+
+
   return (
- 
+    <div className="modal-container flex">
 
-<div className='modal-container flex'>
-<SearchContextProvider>
-<SearchContainer />
-</SearchContextProvider>
-</div>
 
-  )
-}
+      <SearchContainer />
+    </div>
+  );
+};
 
-export default ModalContainer
+export default ModalContainer;
