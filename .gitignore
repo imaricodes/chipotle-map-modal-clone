@@ -25,3 +25,8 @@ dist-ssr
 
 #env
 .env
+
+#etc (edit before production)
+dummyData
+Modals
+hooks
