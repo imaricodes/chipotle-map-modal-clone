@@ -2,6 +2,8 @@ import { SearchContextProvider } from "./components/User/Contexts/SearchAreaCont
 
 import ModalContainer from "./components/User/ModalContainer/ModalContainer";
 
+
+
 function App() {
   return (
     <SearchContextProvider>
