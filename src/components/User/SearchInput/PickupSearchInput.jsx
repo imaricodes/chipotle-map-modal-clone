@@ -107,38 +107,39 @@ const PickupSearchInput = () => {
 
 
     // *** DEVELOPMENT PLACE CHANGED FUNCTION *** //
-  async function placeChangedDevelopment() {
-    console.log("running dummy place change function");
+  // async function placeChangedDevelopment() {
+  //   console.log("running dummy place change function");
  
-    setNearbyResults(nearbySearchDummyData);
-  }
+  //   setNearbyResults(nearbySearchDummyData);
+  // }
 
   // *** PRODUCTION PLACE CHANGED FUNCTION *** //
-  // async function placeChanged(place) {
-  //   console.log("place", place);
-  //   //search radius and location
-  //   const locationLat = place.geometry.location.lat();
-  //   const locationLong = place.geometry.location.lng();
-  //   const location = `${locationLat}%2C${locationLong}`;
-  //   const radius = 40000;
+  async function placeChanged(place) {
+    console.log("place returned", JSON.stringify(place));
+    //search radius and location
+    const locationLat = place.geometry.location.lat();
+    const locationLong = place.geometry.location.lng();
+    const location = `${locationLat}%2C${locationLong}`;
+    const radius = 40000;
 
-  //   //fetch nearby places based on user input location
-  //   let storeLocations = await fetch(
-  //     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&key=${MAP_KEY}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       return data.results;
-  //     })
-  //     .catch((error) => console.log(error));
+    //fetch nearby places based on user input location
+    let storeLocations = await fetch(
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&fields=name&key=${MAP_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("nearby search data", data);
+        return data.results;
+      })
+      .catch((error) => console.log(error));
 
-  //   //use place deatils api to get address for each location and add to location object
-  //   let mapLocations = await addAdressToStoreLocations(storeLocations);
+    //use place deatils api to get address for each location and add to location object
+    let mapLocations = await addAdressToStoreLocations(storeLocations);
 
 
 
-  //   setNearbyResults(mapLocations);
-  // }
+    setNearbyResults(mapLocations);
+  }
 
   const focusInputCursor = (e) => {
     e.preventDefault();
@@ -174,22 +175,22 @@ const PickupSearchInput = () => {
       <Autocomplete
         apiKey={MAP_KEY}
         style={{ width: "100%" }}
-        // onPlaceSelected={placeChanged}
-        onPlaceSelected={null}
+        onPlaceSelected={placeChanged}
+        // onPlaceSelected={null}
         options={{
           types: ["(regions)"],
-          fields: ["address_components", "geometry", "icon", "name"],
+          fields: [ "geometry"],
           componentRestrictions: { country: "us" },
         }}
         placeholder=""
-        // onInput={handleUserInput}
-        onInput={null}
+        onInput={handleUserInput}
+        // onInput={null}
         ref={inputRef}
       />
     </div>
-    <div>
+    {/* <div>
       <button className="w-40 h-20 bg-red-100" onClick={placeChangedDevelopment}>Run Dummy Data</button>
-    </div>
+    </div> */}
     </>
   );
 };

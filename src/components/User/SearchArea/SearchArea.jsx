@@ -9,7 +9,7 @@ const SearchArea = () => {
   const { showPickupDetail, deliveryModeActive } = useContext(SearchAreaContext);
 
   return (
-    <div className="search-area flex flex-1 flex-col w-full h-full relative">
+    <div className="search-area flex  flex-col min-w-[375px] w-full h-full relative md:w-[375px]">
       {showPickupDetail && <RestaurantDetails />}
 
       <SearchView />

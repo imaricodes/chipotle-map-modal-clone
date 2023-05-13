@@ -7,6 +7,10 @@ dialog:modal {
   max-height: 100vh;
 }
 
+*:focus {
+  outline: none;
+}
+
 @font-face {
   font-family: "TradeGothic";
   src: url("../src/assets/Trade-Gothic-LT-Std-Bold");

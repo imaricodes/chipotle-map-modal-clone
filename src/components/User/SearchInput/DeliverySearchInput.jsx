@@ -168,8 +168,8 @@ const DeliverySearchInput = (props) => {
         <Autocomplete
           apiKey={MAP_KEY}
           style={{ width: "100%" }}
-          // onPlaceSelected={placeChanged}
-          onPlaceSelected={null}
+          onPlaceSelected={placeChanged}
+          // onPlaceSelected={null}
           options={{
             types: ["address"],
             fields: [
@@ -181,8 +181,8 @@ const DeliverySearchInput = (props) => {
             componentRestrictions: { country: "us" },
           }}
           placeholder=""
-          // onInput={handleUserInput}
-          onInput={null}
+          onInput={handleUserInput}
+          // onInput={null}
           ref={inputRef}
           // onError={(status, clearSuggestions) => clearSuggestions()}
           onError={(status, error, clearSuggestions) =>
@@ -190,12 +190,12 @@ const DeliverySearchInput = (props) => {
           }
         />
       </div>
-      <button
+      {/* <button
         className="w-40 h-20 bg-red-100"
         onClick={placeChangedDevelopment}
       >
         Run Dummy Data
-      </button>
+      </button> */}
     </>
   );
 };

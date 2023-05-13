@@ -3,7 +3,7 @@ import ToggleWrapper from './ToggleWrapper'
 
 const ToggleContainer = () => {
   return (
-    <div className='toggle-container flex justify-center pb-[20px]'>
+    <div className='toggle-container  pb-[20px]  md:w-[315px]'>
         <ToggleWrapper/>
     </div>
   )

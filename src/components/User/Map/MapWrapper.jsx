@@ -10,8 +10,7 @@ const MapWrapper = () => {
     // const { nearbyResults } = useContext(SearchAreaContext);
 
     return (
-      <div className='map-wrapper flex  w-full 
-      '>
+      <div className='map-wrapper w-full h-full relative'>
         {/* //TEMP: for production add MAP_KEY to wrapper API key */}
        <Wrapper apiKey='AIzaSyCWzgD8qrlxljtiaIlJDF0P8AzrmvKlErc'>
         <Map />

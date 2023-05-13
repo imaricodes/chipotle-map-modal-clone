@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect, useState, useLayoutEffect } from "react";
+import React, {useContext} from "react";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 
 const SearchInputPlaceHolder = (props) => {
@@ -26,7 +26,7 @@ const SearchInputPlaceHolder = (props) => {
         className="input-placehoder-text input-placehoder-text--input-focus-active-false absolute transition-all ease-in-out duration-[2000]"
         onClick={setSearchInputState}
       >
-        <p>{placeHolderText}</p>
+        <p className="text-[#786259]">{placeHolderText}</p>
       </div>
     </div>
   );
