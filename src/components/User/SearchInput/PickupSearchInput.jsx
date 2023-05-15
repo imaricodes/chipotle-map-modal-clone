@@ -16,8 +16,6 @@ const PickupSearchInput = () => {
     selectedStore,
   } = useContext(SearchAreaContext);
 
-
-
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
@@ -76,7 +74,6 @@ const PickupSearchInput = () => {
           .then((response) => response.json())
           .then((data) => {
             const regexStreetAddressOnly = /^[^,]*/;
-            const regexCityStateZip = /,\s*(.*)/g;
             const regexShortAddress = /\s[0-9]+,\s*USA$/g;
             const regexDailyHours = /^([^\s]+)\s/;
 
@@ -106,40 +103,42 @@ const PickupSearchInput = () => {
   }
 
 
-    // *** DEVELOPMENT PLACE CHANGED FUNCTION *** //
-  // async function placeChangedDevelopment() {
-  //   console.log("running dummy place change function");
+    // *** PLACE CHANGED FUNCTION FOR DEVLEOPMENT *** //
+  async function placeChangedDevelopment() {
+    console.log("running dummy place change function");
  
-  //   setNearbyResults(nearbySearchDummyData);
-  // }
-
-  // *** PRODUCTION PLACE CHANGED FUNCTION *** //
-  async function placeChanged(place) {
-    console.log("place returned", JSON.stringify(place));
-    //search radius and location
-    const locationLat = place.geometry.location.lat();
-    const locationLong = place.geometry.location.lng();
-    const location = `${locationLat}%2C${locationLong}`;
-    const radius = 40000;
-
-    //fetch nearby places based on user input location
-    let storeLocations = await fetch(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&fields=name&key=${MAP_KEY}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("nearby search data", data);
-        return data.results;
-      })
-      .catch((error) => console.log(error));
-
-    //use place deatils api to get address for each location and add to location object
-    let mapLocations = await addAdressToStoreLocations(storeLocations);
-
-
-
-    setNearbyResults(mapLocations);
+    setNearbyResults(nearbySearchDummyData);
   }
+
+
+  // DISABLED FOR DEVELOPMENT
+  // *** PLACE CHANGED FUNCTION FOR PRODUCTION  *** //
+  // async function placeChanged(place) {
+  //   console.log("place returned", JSON.stringify(place));
+  //   //search radius and location
+  //   const locationLat = place.geometry.location.lat();
+  //   const locationLong = place.geometry.location.lng();
+  //   const location = `${locationLat}%2C${locationLong}`;
+  //   const radius = 40000;
+
+  //   //fetch nearby places based on user input location
+  //   let storeLocations = await fetch(
+  //     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=chipotle&fields=name&key=${MAP_KEY}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("nearby search data", data);
+  //       return data.results;
+  //     })
+  //     .catch((error) => console.log(error));
+
+  //   //use place deatils api to get address for each location and add to location object
+  //   let mapLocations = await addAdressToStoreLocations(storeLocations);
+
+
+
+  //   setNearbyResults(mapLocations);
+  // }
 
   const focusInputCursor = (e) => {
     e.preventDefault();
@@ -165,7 +164,8 @@ const PickupSearchInput = () => {
 
   useEffect(() => {
     if (selectedStore) {
-      inputRef.current.value = selectedStore.address_short;
+      // inputRef.current.value ="";
+      // inputRef.current.value = selectedStore.address_short;
     }
   }, [selectedStore]);
 
@@ -175,22 +175,29 @@ const PickupSearchInput = () => {
       <Autocomplete
         apiKey={MAP_KEY}
         style={{ width: "100%" }}
-        onPlaceSelected={placeChanged}
-        // onPlaceSelected={null}
+        //onPlaceSelected: live API disabled for development
+        // onPlaceSelected={placeChanged}
+        onPlaceSelected={null}
         options={{
           types: ["(regions)"],
           fields: [ "geometry"],
           componentRestrictions: { country: "us" },
         }}
         placeholder=""
+        // onIput: live API disabled for development
         onInput={handleUserInput}
         // onInput={null}
         ref={inputRef}
       />
+       <button
+          className="py-4 px-4 text-sm  bg-red-100"
+          onClick={placeChangedDevelopment}
+        >
+          Due to prohibitive Google Maps API costs, this demo runs with dummy
+          data. The mapping, however, is live. Click this box to run demo with
+          dummy data.
+        </button>
     </div>
-    {/* <div>
-      <button className="w-40 h-20 bg-red-100" onClick={placeChangedDevelopment}>Run Dummy Data</button>
-    </div> */}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect, useState } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import PickupSearchInput from "../SearchInput/PickupSearchInput";
 import SearchInputPlaceHolder from "./SearchInputPlaceHolder";
 import DeliverySearchInput from "../SearchInput/DeliverySearchInput";
@@ -10,13 +10,13 @@ const Search = () => {
   const {
     nearbyResults,
     setNearbyResults,
-    searchInputFocusActive,
     setSearchInputFocusActive,
     searchInputReceived,
     setSearchInputReceived,
     deliveryModeActive,
     deliveryLocation,
     setDeliveryLocation,
+    selectedStore,
   } = useContext(SearchAreaContext);
 
   const searchIconRef = useRef(null);
@@ -26,8 +26,6 @@ const Search = () => {
   let searchInputActive = true;
 
   useEffect(() => {
-    console.log("farts", deliveryModeActive);
-
     if (!deliveryModeActive) {
       if (nearbyResults.length === 0) {
         if (searchIconRef.current.classList.contains("hidden")) {
@@ -80,8 +78,28 @@ const Search = () => {
     }
   };
 
+  //*** UNCOMMENT FOR PRODUCTION ***/
+  // useEffect(() => {
+  //   if (searchInputReceived === true) {
+  //     inputPlaceHolderRef.current.classList.remove(
+  //       "input-placehoder-text--input-focus-active-false"
+  //     );
+  //     inputPlaceHolderRef.current.classList.add(
+  //       "input-placehoder-text--input-focus-active-true"
+  //     );
+  //   } else {
+  //     inputPlaceHolderRef.current.classList.add(
+  //       "input-placehoder-text--input-focus-active-false"
+  //     );
+  //     inputPlaceHolderRef.current.classList.remove(
+  //       "input-placehoder-text--input-focus-active-true"
+  //     );
+  //   }
+  // }, [searchInputReceived]);
+
+  //*** COMMENT OUT FOR PRODUCTION ***/
   useEffect(() => {
-    if (searchInputReceived === true) {
+    if (searchInputReceived === true || selectedStore !== null) {
       inputPlaceHolderRef.current.classList.remove(
         "input-placehoder-text--input-focus-active-false"
       );
@@ -96,7 +114,7 @@ const Search = () => {
         "input-placehoder-text--input-focus-active-true"
       );
     }
-  }, [searchInputReceived]);
+  }, [searchInputReceived, selectedStore]);
 
   return (
     <div className="search-container ">

@@ -1,14 +1,23 @@
+import { useEffect, useLayoutEffect, useRef, useContext } from "react";
 import { SearchContextProvider } from "./components/User/Contexts/SearchAreaContexts";
-
-import ModalContainer from "./components/User/ModalContainer/ModalContainer";
-
+import SiteWrapper from "./components/User/SiteWrapper";
 
 
 function App() {
+
+
+
+
+  // useLayoutEffect(() => {
+  //   modalRef.current.classList.add("hidden");
+  // });
+
   return (
-    <SearchContextProvider>
-      <ModalContainer />
-    </SearchContextProvider>
+    <div>
+      <SearchContextProvider>
+       <SiteWrapper />
+      </SearchContextProvider>
+    </div>
   );
 }
 

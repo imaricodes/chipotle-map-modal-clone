@@ -3,15 +3,12 @@ import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 import addressDummyData from "../dummyData/dummy_deliveryAddress.json";
 
-
-const DeliverySearchInput = (props) => {
+const DeliverySearchInput = () => {
   const {
-    setNearbyResults,
     searchInputFocusActive,
     setSearchInputFocusActive,
     setSearchInputReceived,
     selectedStore,
-    deliveryLocation,
     setDeliveryLocation,
   } = useContext(SearchAreaContext);
 
@@ -47,8 +44,6 @@ const DeliverySearchInput = (props) => {
     return obj;
   };
 
-  // parseAddress(testAddress);
-
   async function addAdressToStoreLocations(data) {
     let address;
 
@@ -71,11 +66,8 @@ const DeliverySearchInput = (props) => {
           .then((response) => response.json())
           .then((data) => {
             const regexStreetAddressOnly = /^[^,]*/;
-            const regexCityStateZip = /,\s*(.*)/g;
             const regexShortAddress = /\s[0-9]+,\s*USA$/g;
             const regexDailyHours = /^([^\s]+)\s/;
-
-            console.log(data.result.opening_hours.open_now);
 
             address = data.result.formatted_address;
 
@@ -101,38 +93,35 @@ const DeliverySearchInput = (props) => {
     return result;
   }
 
-  // *** DEVELOPMENT PLACE CHANGED FUNCTION *** //
+  // *** PLACE CHANGED FUNCTION FOR DEVLEOPMENT *** //
   async function placeChangedDevelopment(addressDumyData) {
-    console.log("running dummy addrress  function");
     setDeliveryLocation(addressDummyData);
   }
 
-  // *** PRODUCTION PLACE CHANGED FUNCTION *** //
-  async function placeChanged(place) {
-    //search radius and location
-    //TODO: Does this need to change?
-    const locationLat = place.geometry.location.lat();
-    const locationLong = place.geometry.location.lng();
-    const location = `${locationLat}%2C${locationLong}`;
-    const radius = 40000;
+  // DIABLED FOR DEVELOPMENT
+  // *** PLACE CHANGED FUNCTION FOR PRODUCTIONS*** //
+  // async function placeChanged(place) {
+  //   //search radius and location
+  //   //TODO: Does this need to change?
+  //   const locationLat = place.geometry.location.lat();
+  //   const locationLong = place.geometry.location.lng();
 
+  //   //check for undefined address components
 
-    //check for undefined address components
+  //   let obj = {
+  //     street_address: `${place.address_components[0].long_name} ${place.address_components[1].long_name}`,
+  //     city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
+  //     place_id: place.place_id,
+  //     lat: place.geometry.location.lat(),
+  //     lng: place.geometry.location.lng(),
+  //   }
 
-    let obj = {
-      street_address: `${place.address_components[0].long_name} ${place.address_components[1].long_name}`,
-      city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
-      place_id: place.place_id,
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng(),
-    }
+  //   console.log('obj', JSON.stringify(obj));
 
-    console.log('obj', JSON.stringify(obj));
+  //   //set deliveryLocation
+  //   setDeliveryLocation(obj);
 
-    //set deliveryLocation
-    setDeliveryLocation(obj);
-
-  }
+  // }
 
   const focusInputCursor = (e) => {
     e.preventDefault();
@@ -166,10 +155,12 @@ const DeliverySearchInput = (props) => {
     <>
       <div className="w-full" onClick={focusInputCursor}>
         <Autocomplete
-          apiKey={MAP_KEY}
+          // apiKey: disabled for development
+          // apiKey={MAP_KEY}
           style={{ width: "100%" }}
-          onPlaceSelected={placeChanged}
-          // onPlaceSelected={null}
+          //onPlaceSelected: live API disabled for development
+          // onPlaceSelected={placeChanged}
+          onPlaceSelected={null}
           options={{
             types: ["address"],
             fields: [
@@ -181,21 +172,20 @@ const DeliverySearchInput = (props) => {
             componentRestrictions: { country: "us" },
           }}
           placeholder=""
-          onInput={handleUserInput}
-          // onInput={null}
+          //onInput: live API disabled for development
+          // onInput={handleUserInput}
+          onInput={null}
           ref={inputRef}
-          // onError={(status, clearSuggestions) => clearSuggestions()}
-          onError={(status, error, clearSuggestions) =>
-            console.log("WAYS", error)
-          }
         />
+        <button
+          className="py-4 px-4 text-sm  bg-red-100"
+          onClick={placeChangedDevelopment}
+        >
+          Due to prohibitive Google Maps API costs, this demo runs with dummy
+          data. The mapping, however, is live. Click this box to run demo with
+          dummy data.
+        </button>
       </div>
-      {/* <button
-        className="w-40 h-20 bg-red-100"
-        onClick={placeChangedDevelopment}
-      >
-        Run Dummy Data
-      </button> */}
     </>
   );
 };

@@ -104,4 +104,10 @@ dialog:modal {
   }
 }
 
+@layer components {
+  nav li{
+    @apply p-4 shrink-0
+  }
+}
+
 
