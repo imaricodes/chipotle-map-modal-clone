@@ -1,6 +1,6 @@
 import React from "react";
 import { useLayoutEffect, useRef, useContext } from "react";
-import ModalContainer from "./ModalContainer/ModalContainer";
+import MainModalContainer from "./MainModalContainer/MainModalContainer";
 import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
 import bagSVG from "../assets/bag.svg";
 import PepperSmallBrown from "../assets/pepper-small-brown.svg";
@@ -93,7 +93,7 @@ const SiteWrapper = () => {
       </main>
 
       <div ref={modalRef} className="">
-        <ModalContainer />
+        <MainModalContainer />
       </div>
     </div>
   );

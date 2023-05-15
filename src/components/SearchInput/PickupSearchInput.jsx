@@ -3,7 +3,7 @@ import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 //Data for development only
-import nearbySearchDummyData from "../../dummyData/dummy_nearby_search_data.json";
+import nearbySearchDummyData from "../../devData/dummy_nearby_search_data.json";
 
 const PickupSearchInput = () => {
   const {
@@ -107,7 +107,6 @@ const PickupSearchInput = () => {
   // DISABLED FOR DEVELOPMENT
   // *** PLACE CHANGED FUNCTION FOR PRODUCTION  *** //
   // async function placeChanged(place) {
-  //   console.log("place returned", JSON.stringify(place));
   //   //search radius and location
   //   const locationLat = place.geometry.location.lat();
   //   const locationLong = place.geometry.location.lng();
@@ -120,7 +119,6 @@ const PickupSearchInput = () => {
   //   )
   //     .then((response) => response.json())
   //     .then((data) => {
-  //       console.log("nearby search data", data);
   //       return data.results;
   //     })
   //     .catch((error) => console.log(error));

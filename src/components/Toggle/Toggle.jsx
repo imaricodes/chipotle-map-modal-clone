@@ -37,7 +37,6 @@ const Toggle = () => {
       pickupToggleRef.current.classList.remove("active");
       deliveryToggleRef.current.classList.add("active");
     }
-    console.log("delivery mode active", deliveryModeActive);
   }, [deliveryModeActive]);
 
   return (

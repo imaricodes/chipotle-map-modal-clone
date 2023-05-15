@@ -18,7 +18,6 @@ const Map = () => {
     let map;
 
     if (deliveryModeActive && deliveryLocation !== null) {
-      console.log("from MAP delivery mode active delivery location not null");
       mapOptions = {
         ...mapOptions,
         center: {
@@ -44,7 +43,6 @@ const Map = () => {
 
     // Pickup View, no search yet
     if (nearbyResults.length === 0) {
-      console.log("from MAP no nearby results");
       mapOptions = {
         zoom: 3,
         center: { lat: 41.850033, lng: -87.6500523 },

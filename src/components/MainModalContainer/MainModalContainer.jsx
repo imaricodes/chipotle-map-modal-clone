@@ -4,7 +4,6 @@ import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 const ModalContainer = () => {
   const modalRef = useRef(null);
-  const searchhContainerRenderCounted = useRef(0);
 
   const {
     locationModalActive,
@@ -18,7 +17,6 @@ const ModalContainer = () => {
   } = useContext(SearchAreaContext);
 
   const handleCloseModal = () => {
-    console.log("close modal clicked");
     setLocationModalActive(false);
     setNearbyResults([]);
     setDeliveryLocation(null);
@@ -37,13 +35,6 @@ const ModalContainer = () => {
       modalRef.current.classList.add("hidden");
     }
   }, [locationModalActive]);
-
-  useEffect(() => {
-    console.log(
-      "modal container rendered: ",
-      searchhContainerRenderCounted.current++
-    );
-  });
 
   return (
     <div ref={modalRef} className="modal-container  relative hidden">

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
-import addressDummyData from "../../dummyData/dummy_deliveryAddress.json";
+import addressDummyData from "../../devData/dummy_deliveryAddress.json";
 
 const DeliverySearchInput = () => {
   const {
@@ -59,7 +59,6 @@ const DeliverySearchInput = () => {
     //add address property to each object in data array
     let result = await Promise.all(
       data.map(async (element) => {
-        console.log("element vicinity", element.vicinity);
         return fetch(
           `https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.place_id}&fields=${fields.name},${fields.formatted_address},${fields.opening_hours}&key=${MAP_KEY}`
         )
@@ -108,7 +107,7 @@ const DeliverySearchInput = () => {
 
   //   //check for undefined address components
 
-  //   let obj = {
+  //   let locationDetails = {
   //     street_address: `${place.address_components[0].long_name} ${place.address_components[1].long_name}`,
   //     city_state_country: `${place.address_components[2].long_name}, ${place.address_components[4].short_name}, ${place.address_components[5].short_name}`,
   //     place_id: place.place_id,
@@ -116,10 +115,8 @@ const DeliverySearchInput = () => {
   //     lng: place.geometry.location.lng(),
   //   }
 
-  //   console.log('obj', JSON.stringify(obj));
-
   //   //set deliveryLocation
-  //   setDeliveryLocation(obj);
+  //   setDeliveryLocation(locationDetails);
 
   // }
 

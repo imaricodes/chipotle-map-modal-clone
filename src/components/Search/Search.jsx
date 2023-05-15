@@ -65,13 +65,11 @@ const Search = () => {
 
   const handleCloseIcon = () => {
     if (!deliveryModeActive) {
-      console.log("pickup close icon clicked");
       setNearbyResults([]);
       setSearchInputReceived(false);
       setSearchInputFocusActive(false);
     }
     if (deliveryModeActive) {
-      console.log("pickup close icon clicked");
       setDeliveryLocation(null);
       setSearchInputReceived(false);
       setSearchInputFocusActive(false);
@@ -143,7 +141,7 @@ const Search = () => {
             src={searchIcon}
             alt="search icon"
             style={{ width: "21px", height: "21px" }}
-            onClick={() => console.log("search icon clicked")}
+            onClick={null}
           />
 
           <img

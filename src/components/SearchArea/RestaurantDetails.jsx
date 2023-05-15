@@ -13,8 +13,6 @@ const RestaurantDetails = () => {
     pickupInfoModalActive,
   } = useContext(SearchAreaContext);
 
-  console.log("selected store is open?", selectedStore.is_open_now);
-
   const mapURLParameters = {
     lat: selectedStore.geometry.location.lat,
     lng: selectedStore.geometry.location.lng,
