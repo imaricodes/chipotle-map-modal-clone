@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 const Restaurants = () => {
   const { nearbyResults, setShowPickupDetail, setSelectedStore } =

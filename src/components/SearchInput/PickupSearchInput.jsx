@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
-
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 //Data for development only
-import nearbySearchDummyData from "../dummyData/dummy_nearby_search_data.json";
-
+import nearbySearchDummyData from "../../dummyData/dummy_nearby_search_data.json";
 
 const PickupSearchInput = () => {
   const {
@@ -19,7 +17,6 @@ const PickupSearchInput = () => {
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 
   const inputRef = useRef(null);
-
 
   // *** FUNCTIONS *** //
 
@@ -50,8 +47,6 @@ const PickupSearchInput = () => {
 
     return obj;
   };
-
-  
 
   async function addAdressToStoreLocations(data) {
     let address;
@@ -102,14 +97,12 @@ const PickupSearchInput = () => {
     return result;
   }
 
-
-    // *** PLACE CHANGED FUNCTION FOR DEVLEOPMENT *** //
+  // *** PLACE CHANGED FUNCTION FOR DEVLEOPMENT *** //
   async function placeChangedDevelopment() {
     console.log("running dummy place change function");
- 
+
     setNearbyResults(nearbySearchDummyData);
   }
-
 
   // DISABLED FOR DEVELOPMENT
   // *** PLACE CHANGED FUNCTION FOR PRODUCTION  *** //
@@ -134,8 +127,6 @@ const PickupSearchInput = () => {
 
   //   //use place deatils api to get address for each location and add to location object
   //   let mapLocations = await addAdressToStoreLocations(storeLocations);
-
-
 
   //   setNearbyResults(mapLocations);
   // }
@@ -171,25 +162,25 @@ const PickupSearchInput = () => {
 
   return (
     <>
-    <div className="w-full" onClick={focusInputCursor}>
-      <Autocomplete
-        apiKey={MAP_KEY}
-        style={{ width: "100%" }}
-        //onPlaceSelected: live API disabled for development
-        // onPlaceSelected={placeChanged}
-        onPlaceSelected={null}
-        options={{
-          types: ["(regions)"],
-          fields: [ "geometry"],
-          componentRestrictions: { country: "us" },
-        }}
-        placeholder=""
-        // onIput: live API disabled for development
-        onInput={handleUserInput}
-        // onInput={null}
-        ref={inputRef}
-      />
-       <button
+      <div className="w-full" onClick={focusInputCursor}>
+        <Autocomplete
+          apiKey={MAP_KEY}
+          style={{ width: "100%" }}
+          //onPlaceSelected: live API disabled for development
+          // onPlaceSelected={placeChanged}
+          onPlaceSelected={null}
+          options={{
+            types: ["(regions)"],
+            fields: ["geometry"],
+            componentRestrictions: { country: "us" },
+          }}
+          placeholder=""
+          // onIput: live API disabled for development
+          onInput={handleUserInput}
+          // onInput={null}
+          ref={inputRef}
+        />
+        <button
           className="py-4 px-4 text-sm  bg-red-100"
           onClick={placeChangedDevelopment}
         >
@@ -197,7 +188,7 @@ const PickupSearchInput = () => {
           data. The mapping, however, is live. Click this box to run demo with
           dummy data.
         </button>
-    </div>
+      </div>
     </>
   );
 };

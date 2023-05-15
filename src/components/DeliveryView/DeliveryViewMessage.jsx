@@ -1,5 +1,5 @@
 import React from 'react'
-import locationPepper from "../../../assets/chipotle-location.svg"
+import locationPepper from "../../assets/chipotle-location.svg"
 
 
 const DeliveryViewMessage = () => {

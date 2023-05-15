@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchArea, MapWrapper } from "../../ComponentsIndex";
+import { SearchArea, MapWrapper } from "../ComponentsIndex";
 
 const SearchContainer = () => {
   return (

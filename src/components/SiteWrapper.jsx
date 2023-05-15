@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect, useLayoutEffect, useRef, useContext } from "react";
+import { useLayoutEffect, useRef, useContext } from "react";
 import ModalContainer from "./ModalContainer/ModalContainer";
-import { SearchAreaContext } from "./Contexts/SearchAreaContexts";
-import bagSVG from "../../assets/bag.svg";
-import PepperSmallBrown from "../../assets/pepper-small-brown.svg";
-import ChipotleMedallionLogo from "../../assets/chipotle-medallion-logo.svg";
-import UserOutline from "../../assets/user-outline.svg";
-import MenuHamburger from "../../assets/menu-hamburger.svg";
+import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import bagSVG from "../assets/bag.svg";
+import PepperSmallBrown from "../assets/pepper-small-brown.svg";
+import ChipotleMedallionLogo from "../assets/chipotle-medallion-logo.svg";
+import UserOutline from "../assets/user-outline.svg";
+import MenuHamburger from "../assets/menu-hamburger.svg";
 
 const SiteWrapper = () => {
   const modalRef = useRef(null);
@@ -44,11 +44,10 @@ const SiteWrapper = () => {
         {/* <header className="border-b-4 border-b-red-500 border-solid flex  w-full "> */}
         <header className="border-b-[1px] h-[99px] border-b-[#d4cbc7] border-solid inline-flex relative  items-center w-full ">
           <div className="left-container ml-4  items-center flex  lg-header:mr-10 flex-[1_2_100%]">
+            <div className=" lg-header:hidden h-[16px] w-[24px] mr-3">
+              <img src={MenuHamburger} alt="menu-hamburger" />
+            </div>
 
-              <div className=" lg-header:hidden h-[16px] w-[24px] mr-3">
-                <img src={MenuHamburger} alt="menu-hamburger" />
-              </div>
-      
             <div className=" h-[58px] w-[58px] lg:h-[81px] lg:w-[81px]">
               <img src={ChipotleMedallionLogo} />
             </div>

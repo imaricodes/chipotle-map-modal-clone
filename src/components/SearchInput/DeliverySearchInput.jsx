@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
-import addressDummyData from "../dummyData/dummy_deliveryAddress.json";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import addressDummyData from "../../dummyData/dummy_deliveryAddress.json";
 
 const DeliverySearchInput = () => {
   const {

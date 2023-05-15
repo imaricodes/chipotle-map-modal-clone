@@ -1,9 +1,8 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
-// import closeIcon from "../../../assets/close-icon.svg";
-import infoIcon from "../../../assets/info-orange-brown.svg";
-import closeIcon from "../../../assets/close-icon-restaurant-details.svg";
-import pickupIcon from "../../../assets/pickup.svg";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import infoIcon from "../../assets/info-orange-brown.svg";
+import closeIcon from "../../assets/close-icon-restaurant-details.svg";
+import pickupIcon from "../../assets/pickup.svg";
 
 const RestaurantDetails = () => {
   const {
@@ -48,7 +47,6 @@ const RestaurantDetails = () => {
 
   return (
     <div className="restaurant-details-view  bg-white h-full w-full absolute pt-8 top-0 left-0 z-10">
-     
       <div className="restaurant-details px-5 pb-5 min-width-[325px] w-full">
         <div className="header flex justify-between mb-3 relative">
           <div className="flex flex-col text-[#54392d]">

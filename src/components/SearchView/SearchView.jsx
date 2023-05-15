@@ -1,6 +1,5 @@
 import React from 'react'
-import ToggleContainer from '../Toggle/ToggleContainer.jsx'
-import Search from '../Search/Search.jsx'
+import { ToggleContainer, Search } from "../ComponentsIndex";
 
 
 const SearchView = () => {

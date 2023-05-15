@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useRef } from "react";
-// import Restaurants from "../Restaurants/Restaurants";
-import locationTarget from "../../../assets/location-target.svg";
+import locationTarget from "../../assets/location-target.svg";
 import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 import { Restaurants } from "../ComponentsIndex";

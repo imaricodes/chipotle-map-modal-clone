@@ -1,9 +1,8 @@
 import React from "react";
 import { useContext, useRef, useEffect } from "react";
-
-import storeLocationMarker from "../../../assets/icon-store-location-marker.png";
-import deliveryMarker from "../../../assets/icon-delivery-location-marker.png";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import storeLocationMarker from "../../assets/icon-store-location-marker.png";
+import deliveryMarker from "../../assets/icon-delivery-location-marker.png";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 const Map = () => {
   const { nearbyResults, selectedStore, deliveryModeActive, deliveryLocation } =
@@ -27,7 +26,7 @@ const Map = () => {
           lng: deliveryLocation.lng,
         },
         zoom: 13,
-        disableDefaultUI: true
+        disableDefaultUI: true,
       };
 
       map = new google.maps.Map(ref.current, mapOptions);
@@ -65,7 +64,7 @@ const Map = () => {
           lng: nearbyResults[0].geometry.location.lng,
         },
         zoom: 10,
-        disableDefaultUI: true
+        disableDefaultUI: true,
       };
 
       //reset map with new center
@@ -92,7 +91,7 @@ const Map = () => {
           lng: selectedStore.geometry.location.lng,
         },
         zoom: 13,
-        disableDefaultUI: true
+        disableDefaultUI: true,
       };
       //reset map with new center
       map = new google.maps.Map(ref.current, mapOptions);

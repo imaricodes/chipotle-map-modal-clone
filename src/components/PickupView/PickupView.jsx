@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useRef } from "react";
-import PickupViewMessage from "../../PickupViewMessage/PickupViewMessage";
-import RestaurantContainer from "../RestaurantContainer/RestaurantContainer";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+// import PickupViewMessage from "../../PickupViewMessage/PickupViewMessage";
+// import RestaurantContainer from "../RestaurantContainer/RestaurantContainer";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+
+import { PickupViewMessage, RestaurantContainer } from "../ComponentsIndex";
 
 const PickupView = () => {
   const { nearbyResults } = useContext(SearchAreaContext);

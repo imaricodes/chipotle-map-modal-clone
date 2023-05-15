@@ -1,14 +1,11 @@
-import React, {useContext} from "react";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import React,{ useContext } from "react";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 const SearchInputPlaceHolder = (props) => {
-  const {
-    searchInputFocusActive,
-    setSearchInputFocusActive,
-  } = useContext(SearchAreaContext);
+  const { searchInputFocusActive, setSearchInputFocusActive } =
+    useContext(SearchAreaContext);
 
-  const placeHolderText =  props.placeHolderText
-
+  const placeHolderText = props.placeHolderText;
 
   const setSearchInputState = () => {
     if (searchInputFocusActive === true) {

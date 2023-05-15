@@ -1,23 +1,32 @@
-import SearchArea from './User/SearchArea/SearchArea';
-import Toggle from './User/Toggle/Toggle';
-import PickupView from './User/PickupView/PickupView';
-import RestaurantContainer from './User/RestaurantContainer/RestaurantContainer';
-import Restaurants from './User/Restaurants/Restaurants';
-import SearchContainer from './User/SearchContainer/SearchContainer';
-import SearchView from './User/SearchView/SearchView';
-import Search from './User/Search/Search';
-import MapWrapper from './User/Map/MapWrapper';
-import Map from './User/Map/Map';
+import SearchArea from "./SearchArea/SearchArea";
+
+import Toggle from "./Toggle/Toggle";
+import ToggleContainer from "./Toggle/ToggleContainer";
+import PickupView from "./PickupView/PickupView";
+import RestaurantContainer from "./RestaurantContainer/RestaurantContainer";
+import Restaurants from "./Restaurants/Restaurants";
+import RestaurantDetails from "./SearchArea/RestaurantDetails";
+import SearchContainer from "./SearchContainer/SearchContainer";
+import SearchView from "./SearchView/SearchView";
+import Search from "./Search/Search";
+import MapWrapper from "./Map/MapWrapper";
+import Map from "./Map/Map";
+import DeliveryView from "./DeliveryView/DeliveryView";
+import PickupViewMessage from "./PickupViewMessage/PickupViewMessage";
 
 export {
-    SearchArea,
-    Toggle,
-    PickupView,
-    RestaurantContainer,
-    Restaurants,
-    SearchView,
-    Search,
-    MapWrapper,
-    Map,
-    SearchContainer
+  SearchArea,
+  Toggle,
+  PickupView,
+  RestaurantContainer,
+  Restaurants,
+  SearchView,
+  Search,
+  MapWrapper,
+  Map,
+  SearchContainer,
+  RestaurantDetails,
+  DeliveryView,
+  PickupViewMessage,
+  ToggleContainer,
 };

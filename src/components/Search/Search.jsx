@@ -2,9 +2,9 @@ import React, { useRef, useContext, useEffect } from "react";
 import PickupSearchInput from "../SearchInput/PickupSearchInput";
 import SearchInputPlaceHolder from "./SearchInputPlaceHolder";
 import DeliverySearchInput from "../SearchInput/DeliverySearchInput";
-import searchIcon from "../../../assets/search.svg";
-import closeIcon from "../../../assets/close-icon.svg";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import searchIcon from "../../assets/search.svg";
+import closeIcon from "../../assets/close-icon.svg";
+import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
 
 const Search = () => {
   const {
