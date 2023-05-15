@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 import infoIcon from "../../assets/info-orange-brown.svg";
 import closeIcon from "../../assets/close-icon-restaurant-details.svg";
 import pickupIcon from "../../assets/pickup.svg";
@@ -11,7 +11,7 @@ const RestaurantDetails = () => {
     selectedStore,
     setPickupInfoModalActive,
     pickupInfoModalActive,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const mapURLParameters = {
     lat: selectedStore.geometry.location.lat,

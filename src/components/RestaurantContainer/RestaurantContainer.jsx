@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useRef } from "react";
 import locationTarget from "../../assets/location-target.svg";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 import { Restaurants } from "../ComponentsIndex";
 
 const RestaurantContainer = () => {
-  const { nearbyResults, showPickupDetail } = useContext(SearchAreaContext);
+  const { nearbyResults, showPickupDetail } = useContext(MainModalContext);
   const targetSectionRef = useRef(null);
 
   useEffect(() => {

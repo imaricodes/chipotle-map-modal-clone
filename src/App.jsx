@@ -1,13 +1,12 @@
-import { SearchContextProvider } from "./Contexts/SearchAreaContexts";
+import { MainModalContextProvider } from "./Contexts/MainModalContext";
 import SiteWrapper from "./components/SiteWrapper";
 
 function App() {
-
   return (
     <div>
-      <SearchContextProvider>
+      <MainModalContextProvider>
         <SiteWrapper />
-      </SearchContextProvider>
+      </MainModalContextProvider>
     </div>
   );
 }

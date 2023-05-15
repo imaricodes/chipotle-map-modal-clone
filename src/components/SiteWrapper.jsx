@@ -1,7 +1,7 @@
 import React from "react";
 import { useLayoutEffect, useRef, useContext } from "react";
 import MainModalContainer from "./MainModalContainer/MainModalContainer";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../Contexts/MainModalContext";
 import bagSVG from "../assets/bag.svg";
 import PepperSmallBrown from "../assets/pepper-small-brown.svg";
 import ChipotleMedallionLogo from "../assets/chipotle-medallion-logo.svg";
@@ -17,7 +17,7 @@ const SiteWrapper = () => {
     setLocationModalActive,
     setNearbyResults,
     setDeliveryLocation,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const showModal = () => {
     setLocationModalActive(true);

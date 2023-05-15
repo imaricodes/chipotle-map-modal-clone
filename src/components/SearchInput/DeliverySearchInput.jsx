@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 import addressDummyData from "../../devData/dummy_deliveryAddress.json";
 
 const DeliverySearchInput = () => {
@@ -10,7 +10,7 @@ const DeliverySearchInput = () => {
     setSearchInputReceived,
     selectedStore,
     setDeliveryLocation,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 

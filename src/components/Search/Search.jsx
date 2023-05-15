@@ -4,7 +4,7 @@ import SearchInputPlaceHolder from "./SearchInputPlaceHolder";
 import DeliverySearchInput from "../SearchInput/DeliverySearchInput";
 import searchIcon from "../../assets/search.svg";
 import closeIcon from "../../assets/close-icon.svg";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const Search = () => {
   const {
@@ -17,7 +17,7 @@ const Search = () => {
     deliveryLocation,
     setDeliveryLocation,
     selectedStore,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const searchIconRef = useRef(null);
   const closeIconRef = useRef(null);

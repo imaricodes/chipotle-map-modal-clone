@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 import * as Icon from "../../assets/Icons";
 
 const Toggle = () => {
   const { deliveryModeActive, setDeliveryModeActive } =
-    useContext(SearchAreaContext);
+    useContext(MainModalContext);
   const pickupToggleRef = useRef(null);
   const deliveryToggleRef = useRef(null);
 

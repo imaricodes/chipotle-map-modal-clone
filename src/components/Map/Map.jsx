@@ -2,11 +2,11 @@ import React from "react";
 import { useContext, useRef, useEffect } from "react";
 import storeLocationMarker from "../../assets/icon-store-location-marker.png";
 import deliveryMarker from "../../assets/icon-delivery-location-marker.png";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const Map = () => {
   const { nearbyResults, selectedStore, deliveryModeActive, deliveryLocation } =
-    useContext(SearchAreaContext);
+    useContext(MainModalContext);
   const ref = useRef();
 
   //add marker to map

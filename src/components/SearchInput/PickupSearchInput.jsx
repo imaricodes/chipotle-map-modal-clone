@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import Autocomplete from "react-google-autocomplete";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 //Data for development only
 import nearbySearchDummyData from "../../devData/dummy_nearby_search_data.json";
@@ -12,7 +12,7 @@ const PickupSearchInput = () => {
     setSearchInputFocusActive,
     setSearchInputReceived,
     selectedStore,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const MAP_KEY = import.meta.env.VITE_MAPS_KEY;
 

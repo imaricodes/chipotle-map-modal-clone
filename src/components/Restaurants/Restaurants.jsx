@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const Restaurants = () => {
   const { nearbyResults, setShowPickupDetail, setSelectedStore } =
-    useContext(SearchAreaContext);
+    useContext(MainModalContext);
 
   const handleAddressLink = (e) => {
     //TODO: this prevent default may have to go if it prevents the click and zoom feature

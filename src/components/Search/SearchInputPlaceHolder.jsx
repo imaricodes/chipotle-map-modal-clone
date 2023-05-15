@@ -1,9 +1,9 @@
-import React,{ useContext } from "react";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import React, { useContext } from "react";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const SearchInputPlaceHolder = (props) => {
   const { searchInputFocusActive, setSearchInputFocusActive } =
-    useContext(SearchAreaContext);
+    useContext(MainModalContext);
 
   const placeHolderText = props.placeHolderText;
 

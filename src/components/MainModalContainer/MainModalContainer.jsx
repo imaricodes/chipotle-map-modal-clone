@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useRef } from "react";
 import { SearchContainer } from "../ComponentsIndex";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const ModalContainer = () => {
   const modalRef = useRef(null);
@@ -14,7 +14,7 @@ const ModalContainer = () => {
     setPickupInfoModalActive,
     setShowPickupDetail,
     setSelectedStore,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const handleCloseModal = () => {
     setLocationModalActive(false);

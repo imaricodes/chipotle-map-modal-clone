@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import DeliveryViewMessage from "./DeliveryViewMessage";
 import DeliveryViewResults from "./DeliveryViewResults";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 
 const DeliveryView = () => {
-  const { deliveryLocation } = useContext(SearchAreaContext);
+  const { deliveryLocation } = useContext(MainModalContext);
 
   useEffect(() => {}, [deliveryLocation]);
 

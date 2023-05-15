@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 
-export const SearchAreaContext = createContext();
+export const MainModalContext = createContext();
 
-export const SearchContextProvider = (props) => {
+export const MainModalContextProvider = (props) => {
   const [nearbyResults, setNearbyResults] = useState([]);
 
   const [searchInputFocusActive, setSearchInputFocusActive] = useState(false);
@@ -15,7 +15,7 @@ export const SearchContextProvider = (props) => {
   const [locationModalActive, setLocationModalActive] = useState(false);
 
   return (
-    <SearchAreaContext.Provider
+    <MainModalContext.Provider
       value={{
         nearbyResults: nearbyResults,
         setNearbyResults: setNearbyResults,
@@ -38,6 +38,6 @@ export const SearchContextProvider = (props) => {
       }}
     >
       {props.children}
-    </SearchAreaContext.Provider>
+    </MainModalContext.Provider>
   );
 };

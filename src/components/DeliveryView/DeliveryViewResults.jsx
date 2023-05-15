@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import locationPepper from "../../assets/chipotle-location.svg";
-import { SearchAreaContext } from "../../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../../Contexts/MainModalContext";
 import carGold from "../../assets/car-gold.svg";
 
 const DeliveryViewResults = () => {
@@ -9,7 +9,7 @@ const DeliveryViewResults = () => {
     deliveryLocation,
     setNearbyResults,
     setDeliveryModeActive,
-  } = useContext(SearchAreaContext);
+  } = useContext(MainModalContext);
 
   const handlePickupInstead = () => {
     setNearbyResults([]);

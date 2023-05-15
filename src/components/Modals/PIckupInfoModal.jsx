@@ -1,11 +1,11 @@
 import React, { useRef, useContext, useEffect } from "react";
-import { SearchAreaContext } from "../Contexts/SearchAreaContexts";
+import { MainModalContext } from "../Contexts/MainModalContext";
 import closeIcon from "../../../assets/close-icon-restaurant-details.svg";
 import pickupIcon from "../../../assets/pickup.svg";
 
 const PIckupInfoModal = () => {
   const { pickupInfoModalActive, setPickupInfoModalActive } =
-    useContext(SearchAreaContext);
+    useContext(MainModalContext);
 
   const dialogRef = useRef(null);
 
@@ -40,7 +40,10 @@ const PIckupInfoModal = () => {
             </p>
           </div>
         </div>
-        <button className="button absolute bottom-0 bg-[#451400] border-[#451400] text-white w-full cursor-pointer" onClick={closeModal}>
+        <button
+          className="button absolute bottom-0 bg-[#451400] border-[#451400] text-white w-full cursor-pointer"
+          onClick={closeModal}
+        >
           OKAY
         </button>
       </div>
