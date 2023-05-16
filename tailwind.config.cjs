@@ -30,7 +30,27 @@ module.exports = {
     '2xl': '1536px',
     // => @media (min-width: 1536px) { ... }
   },
-    extend: {},
+    extend: {
+      keyframes: {
+        zoomOut: {
+          '0%': { transform: 'scale(0)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        zoomIn: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0)' },
+        },
+        fadeIn: {
+          '0%': { transform: 'opacity(0)' },
+          '100%': { transform: 'opacity(1)' },
+        },
+      },
+      animation: {
+        'zoom-out': 'zoomOut .25s ease-in-out',
+        'zoom-in': 'zoomIn .25s ease-in-out ',
+        'fade-in': 'fadeIn .25s ease-in-out' 
+      },
+    },
   },
   plugins: [],
 }

@@ -21,6 +21,7 @@ const SiteWrapper = () => {
 
   const showModal = () => {
     setLocationModalActive(true);
+    
     // modalRef.current.classList.toggle("hidden");
     // mainRef.current.classList.toggle("hidden");
   };
@@ -34,65 +35,84 @@ const SiteWrapper = () => {
 
     if (!locationModalActive) {
       if (mainRef.current.classList.contains("hidden")) {
+        
         mainRef.current.classList.toggle("hidden");
       } else return;
     }
   }, [locationModalActive]);
   return (
     <div>
-      <main ref={mainRef} className="">
-        {/* <header className="border-b-4 border-b-red-500 border-solid flex  w-full "> */}
-        <header className="border-b-[1px] h-[99px] border-b-[#d4cbc7] border-solid inline-flex relative  items-center w-full ">
-          <div className="left-container ml-4  items-center flex  lg-header:mr-10 flex-[1_2_100%]">
-            <div className=" lg-header:hidden h-[16px] w-[24px] mr-3">
-              <img src={MenuHamburger} alt="menu-hamburger" />
+      <main ref={mainRef}>
+        <header className="border-b-[1px] h-[99px] border-b-[#d4cbc7] border-solid flex relative  items-center w-full">
+          <div className="left-container header__left-container--mobile ml-4 min-w-fit items-center flex mr-3 lg-header:flex-1">
+            <div className="block lg-header:hidden">
+              <img className="h-[16px] w-[24px] mr-3 " src={MenuHamburger} />
             </div>
-
-            <div className=" h-[58px] w-[58px] lg:h-[81px] lg:w-[81px]">
-              <img src={ChipotleMedallionLogo} />
+            <div className="h-[58px] w-[58px] lg:h-[81px] lg:w-[81px]">
+              <img
+                className="h-[58px] w-[58px] lg:h-[81px] lg:w-[81px]"
+                src={ChipotleMedallionLogo}
+              />
             </div>
-
-            <div className="sign-in-container flex items-center ml-5 flex-nowrap w-full  ">
-              <img src={UserOutline} />
-              <span className="text-xs lg:text-sm font-bold text-[#786259] uppercase ">
-                Sign in
-              </span>
+            <div className="sm:flex items-center hidden">
+              <img
+                className="h-[48px] w-[48px] lg:h-[48px] lg:w-[48px] ml-9"
+                src={UserOutline}
+              />
+              <div className="whitespace-nowrap text-base text-[#786259] font-bold uppercase">
+                Sign In
+              </div>
             </div>
           </div>
-
-          <nav className=" hidden lg-header:block">
-            <ul className="flex font-tradeGothicBold font-bold text-[#451400] justify-around pr-[16px] text-xl uppercase">
-              <li>Order</li>
-              <li>Catering</li>
-              <li>Rewards</li>
-              <li>Our Values</li>
-              <li>Nutrition</li>
-            </ul>
-          </nav>
-
-          <div className="right-container flex items-center w-full lg-header:flex lg-header:w-[500px] lg-header:ml-20 lg-header:gap-8  lg-header:justify-end   bg-pink-100">
-            {/* pickuu button */}
-            <div className="border-[1px] h-[40px] w-[200px] rounded-full border-[#d4cbc7] border-solid  flex justify-center  ">
+          <div className="nav">
+            <nav className=" hidden lg-header:flex w-full px-4 ">
+              <ul className="flex font-tradeGothicBold font-bold text-[#451400] justify-around pr-[16px] text-xl uppercase">
+                <li>Order</li>
+                <li>Catering</li>
+                <li>Rewards</li>
+                <li>Our Values</li>
+                <li>Nutrition</li>
+              </ul>
+            </nav>
+          </div>
+          <div className="pickup-button-container-mobile   lg-header:hidden">
+            <div className="  border-[1px] h-[40px] w-[200px] m-auto rounded-full border-[#d4cbc7] border-solid  flex justify-center">
               <button className="flex  gap-3 items-center" onClick={showModal}>
                 <img src={PepperSmallBrown} alt="pepper logo" />
                 <span className="text-xl font-extralight text-[#451400]">
                   |
                 </span>
-                <p className="text-sm uppercase py-2 text-[#786259] ">
+                <p className="text-sm uppercase py-2 text-[#786259]">
                   Pickup / Deliver
                 </p>
               </button>
             </div>
+          </div>
 
-            {/* cart bag */}
-            <span className="inline-block ml-auto mr-3">
-              <img src={bagSVG} alt="cart bag" />
-            </span>
+          <div className="right-container flex w-full lg-header:w-auto ml-0 lg-header:ml-10 pr-6 gap-7x justify-end">
+            <div className="pickup-button-container hidden lg-header:flex">
+              <div className=" border-[1px] h-[40px] w-[200px] rounded-full border-[#d4cbc7] border-solid  justify-center">
+                <button
+                  className="flex  gap-3 items-center"
+                  onClick={showModal}
+                >
+                  <img src={PepperSmallBrown} alt="pepper logo" />
+                  <span className="text-xl font-extralight text-[#451400]">
+                    |
+                  </span>
+                  <p className="text-sm uppercase py-2 text-[#786259] ">
+                    Pickup / Deliver
+                  </p>
+                </button>
+              </div>
+            </div>
+
+            <img src={bagSVG} alt="cart bag" />
           </div>
         </header>
       </main>
 
-      <div ref={modalRef} className="">
+      <div ref={modalRef} className="location-modal ">
         <MainModalContainer />
       </div>
     </div>

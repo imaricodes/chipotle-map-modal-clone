@@ -22,6 +22,19 @@ dialog:modal {
   }
 }
 
+/* Location Modal */
+@layer components {
+  .modal-container.active  {
+    /* @apply animate-zoom-out animate-fade-in ; */
+  }
+}
+
+/* Header */
+
+.header__left-container--mobile {
+  @apply flex items-center  w-full;
+}
+
 /* Toggle */
 @layer components {
   .delivery-toggle-active {
@@ -31,16 +44,15 @@ dialog:modal {
   }
 
   .toggle-find-chipotle {
-    @apply rounded-[2em] flex items-center justify-center uppercase text-sm font-bold  w-1/2 gap-2
+    @apply rounded-[2em] flex items-center justify-center uppercase text-sm font-bold  w-1/2 gap-2;
   }
 
-  .toggle-find-chipotle-pickup.active{
-    @apply bg-[#451400] text-white  ;
+  .toggle-find-chipotle-pickup.active {
+    @apply bg-[#451400] text-white;
   }
-  .toggle-find-chipotle-delivery.active{
-    @apply bg-[#451400] text-white  ;
+  .toggle-find-chipotle-delivery.active {
+    @apply bg-[#451400] text-white;
   }
-
 }
 
 /* Search Input */
@@ -62,52 +74,45 @@ dialog:modal {
 
 /* Restaurant Container */
 @layer components {
-  .restaurant-container  {
+  .restaurant-container {
     @apply text-sm text-[#786259];
   }
-
 }
 
 /* Restaurant List */
 
 @layer components {
-
   .restaurant-list-bg--animate:hover {
     background-position: bottom left;
     /* color: #fff; */
   }
   .restaurant-list-bg--animate {
-
-    background: linear-gradient(90deg,#f0f0f0 50%,#fff 0);
+    background: linear-gradient(90deg, #f0f0f0 50%, #fff 0);
     background-position: 100% 100%;
     background-size: 200% 100%;
-    transition: all .2s;
- 
+    transition: all 0.2s;
   }
-  
 }
 
 /* Initial Message */
 @layer components {
   .initial-message p {
-    @apply text-[#8c766d] text-sm  font-light
+    @apply text-[#8c766d] text-sm  font-light;
   }
 }
 /* Button */
 @layer components {
   .button {
-    @apply py-3 flex  justify-center items-center font-tradeGothicBold mb-3 font-bold uppercase text-lg cursor-pointer
-  } 
+    @apply py-3 flex  justify-center items-center font-tradeGothicBold mb-3 font-bold uppercase text-lg cursor-pointer;
+  }
 
   .button-catering {
-    @apply button
+    @apply button;
   }
 }
 
 @layer components {
-  nav li{
-    @apply p-4 shrink-0
+  nav li {
+    @apply p-4 shrink-0;
   }
 }
-
-

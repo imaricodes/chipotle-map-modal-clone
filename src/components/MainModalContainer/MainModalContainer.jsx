@@ -25,19 +25,26 @@ const ModalContainer = () => {
     setShowPickupDetail(null),
       setSelectedStore(null),
       modalRef.current.classList.toggle("hidden");
+      modalRef.current.classList.toggle("hidden");
   };
 
   useEffect(() => {
     if (locationModalActive) {
+      // modalRef.current.classList.toggle("animate-zoom-out, animate-fade-in ");
+
+      modalRef.current.classList.toggle("active");
       modalRef.current.classList.toggle("hidden");
       modalRef.current.classList.toggle("flex");
-    } else {
+    } 
+
+    if (!locationModalActive) {
+      modalRef.current.classList.remove("active");
       modalRef.current.classList.add("hidden");
     }
   }, [locationModalActive]);
 
   return (
-    <div ref={modalRef} className="modal-container  relative hidden">
+    <div ref={modalRef} className="modal-container animate-zoom-out animate-fade-in  relative hidden">
       {/* TODO: Replace text x with icon */}
       <button
         onClick={handleCloseModal}
