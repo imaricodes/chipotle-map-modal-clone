@@ -30,15 +30,11 @@ const ModalContainer = () => {
 
   useEffect(() => {
     if (locationModalActive) {
-      // modalRef.current.classList.toggle("animate-zoom-out, animate-fade-in ");
-
-      modalRef.current.classList.toggle("active");
       modalRef.current.classList.toggle("hidden");
       modalRef.current.classList.toggle("flex");
     } 
 
     if (!locationModalActive) {
-      modalRef.current.classList.remove("active");
       modalRef.current.classList.add("hidden");
     }
   }, [locationModalActive]);

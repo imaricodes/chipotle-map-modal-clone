@@ -13,6 +13,7 @@ import MapWrapper from "./Map/MapWrapper";
 import Map from "./Map/Map";
 import DeliveryView from "./DeliveryView/DeliveryView";
 import PickupViewMessage from "./PickupViewMessage/PickupViewMessage";
+import Header from "./Header/Header";
 
 export {
   SearchArea,
@@ -29,4 +30,5 @@ export {
   DeliveryView,
   PickupViewMessage,
   ToggleContainer,
+  Header,
 };

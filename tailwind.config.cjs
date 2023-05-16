@@ -48,7 +48,7 @@ module.exports = {
       animation: {
         'zoom-out': 'zoomOut .25s ease-in-out',
         'zoom-in': 'zoomIn .25s ease-in-out ',
-        'fade-in': 'fadeIn .25s ease-in-out' 
+        'fade-in': 'fadeIn .25s ease-in-out'
       },
     },
   },

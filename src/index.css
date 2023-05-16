@@ -22,12 +22,6 @@ dialog:modal {
   }
 }
 
-/* Location Modal */
-@layer components {
-  .modal-container.active  {
-    /* @apply animate-zoom-out animate-fade-in ; */
-  }
-}
 
 /* Header */
 
