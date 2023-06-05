@@ -47,7 +47,7 @@ const Header = () => {
           </nav>
         </div>
         <div className="pickup-button-container-mobile   lg-header:hidden">
-          <div className="  border-[1px] h-[40px] w-[200px] m-auto rounded-full border-[#d4cbc7] border-solid  flex justify-center">
+          <div className="border-[1px] h-[40px] w-[200px] m-auto rounded-full border-[#d4cbc7] border-solid  flex justify-center">
             <button className="flex  gap-3 items-center" onClick={showModal}>
               <img src={PepperSmallBrown} alt="pepper logo" />
               <span className="text-xl font-extralight text-[#451400]">|</span>
@@ -57,9 +57,10 @@ const Header = () => {
             </button>
           </div>
         </div>
-
-        <div className="right-container flex w-full lg-header:w-auto ml-0 lg-header:ml-10 pr-6 gap-7x justify-end">
+       
+        <div className="right-container flex w-full lg-header:w-auto ml-0 lg-header:ml-10 pr-6 gap-7 justify-end">
           <div className="pickup-button-container hidden lg-header:flex">
+         
             <div className=" border-[1px] h-[40px] w-[200px] rounded-full border-[#d4cbc7] border-solid  justify-center">
               <button className="flex  gap-3 items-center" onClick={showModal}>
                 <img src={PepperSmallBrown} alt="pepper logo" />
@@ -70,6 +71,7 @@ const Header = () => {
                   Pickup / Deliver
                 </p>
               </button>
+             
             </div>
           </div>
 

@@ -2,11 +2,9 @@ import React from "react";
 import { useLayoutEffect, useRef, useContext } from "react";
 import MainModalContainer from "./MainModalContainer/MainModalContainer";
 import { MainModalContext } from "../Contexts/MainModalContext";
-import bagSVG from "../assets/bag.svg";
-import PepperSmallBrown from "../assets/pepper-small-brown.svg";
-import ChipotleMedallionLogo from "../assets/chipotle-medallion-logo.svg";
-import UserOutline from "../assets/user-outline.svg";
-import MenuHamburger from "../assets/menu-hamburger.svg";
+import Burrito from "../assets/burrito.png";
+
+
 import { Header } from "./ComponentsIndex.js";
 
 const SiteWrapper = () => {
@@ -18,9 +16,6 @@ const SiteWrapper = () => {
 
   const showModal = () => {
     setLocationModalActive(true);
-
-    // modalRef.current.classList.toggle("hidden");
-    // mainRef.current.classList.toggle("hidden");
   };
 
   useLayoutEffect(() => {
@@ -40,6 +35,17 @@ const SiteWrapper = () => {
     <div>
       <main ref={mainRef}>
         <Header />
+        <div className="w-full h-full   text-lg leading-10 font-tradeGothicBold flex flex-col items-center justify-center px-10">
+          <div className="text-center bg-[#faf4e3] px-6 py-4 mt-[5%] rounded-md">
+          <p>
+            This is <strong>NOT</strong> Chipotle! <p>This is a demo clone of the Chipotle website to demonstrate the location finder behavior.</p>  To launch the map, click the Pickup/Deliver button above or the burrito below.
+          </p>
+          </div>
+          <div>
+            <img className="cursor-pointer" src={Burrito} onClick={showModal}/>
+          </div>
+          
+        </div>
       </main>
       <div ref={modalRef} className="location-modal ">
         <MainModalContainer />
